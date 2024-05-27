@@ -8,10 +8,10 @@ public class ListStruct {
         root.list.add(folder);
         System.out.println("AddList Successfully");
     }
-    public void addSong(String listName, boolean isMP4, String name, String title, String website, int time) { //listName = FoderName
+    public void addSong(String folderName, boolean isMP4, String name, String title, String website, int time) { //listName = FoderName
         root = main.root;
-        int index = root.list.indexOf(listName);
-        if (index == -1) addList(listName);
+        int index = root.list.indexOf(folderName);
+        if (index == -1) addList(folderName);
 
         Song song = new Song(isMP4, name, title, website, time);
 
@@ -35,16 +35,16 @@ public class ListStruct {
         folder.remove(index);
         System.out.println("DeleteSong Successfully");
     }
-    public void moveSong(String name, String oldListName, String newListName) {
+    public void moveSong(String name, String oldFolderName, String newFolderName) {
         root = main.root;
-        int oldIndex = root.list.indexOf(oldListName);
-        int newIndex = root.list.indexOf(newListName);
+        int oldIndex = root.list.indexOf(oldFolderName);
+        int newIndex = root.list.indexOf(newFolderName);
         if  (oldIndex == -1) {
-            System.out.println("Error : Folder " + oldListName + " not exist");
+            System.out.println("Error : Folder " + oldFolderName + " not exist");
             return;
         }
         if  (newIndex == -1) {
-            System.out.println("Error : Folder " + newListName + " not exist");
+            System.out.println("Error : Folder " + newFolderName + " not exist");
             return;
         }
         //?
