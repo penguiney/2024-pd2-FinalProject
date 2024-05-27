@@ -1,58 +1,52 @@
 import java.util.ArrayList;
 
 public class ListStruct {
-
+    public Folder searchFolderByName (String name) {
+        ArrayList<Folder> root = Main.root;
+        for(Folder f : root) {
+            if(f.name == name) return f;
+        }
+        System.err.println("Error: ListStruct/searchFolderByName - No such folder");
+        return null;
+    }
+    public Song searchSongByName (Folder folder, String name) {
+        for(Song s : folder.content) {
+            if(s.name == name) return s;
+        }
+        System.err.println("Error: ListStruct/searchSongByName - No such song");
+        return null;
+    } 
     public void addList(String name) {
-        root = main.root;
+        ArrayList<Folder> root = Main.root;
         Folder folder = new Folder(name);
-        root.list.add(folder);
+        root.add(folder);
         System.out.println("AddList Successfully");
     }
     public void addSong(String folderName, boolean isMP4, String name, String title, String website, int time) { //listName = FoderName
-        root = main.root;
-        int index = root.list.indexOf(folderName);
-        if (index == -1) addList(folderName);
-
         Song song = new Song(isMP4, name, title, website, time);
 
-        Folder folder = root.list[index];
+        Folder folder = searchFolderByName(folderName);
         folder.content.add(song);
         System.out.println("AddSong Successfully");
     }
     public void deleteList(String name) { //list = forder
-        root = main.root;
-        root.list.remove(name);
+        ArrayList<Folder> root = Main.root;
+        root.remove(searchFolderByName(name));
         System.out.println("DeleteList Successfully");
     }
-    public void deleteSong(String name) {
-        root = main.root;
-        int index = root.list.indexOf(name);
-        if (index == -1) {
-            System.out.println("Error : Folder " + name + " not exist");
-            return;
-        }
-        Folder folder = root.list[index];
-        folder.remove(index);
+    public void deleteSong(String folderName, String name) {
+        Folder folder = searchFolderByName(folderName);
+        folder.content.remove(searchSongByName(folder, name));
         System.out.println("DeleteSong Successfully");
     }
     public void moveSong(String name, String oldFolderName, String newFolderName) {
-        root = main.root;
-        int oldIndex = root.list.indexOf(oldFolderName);
-        int newIndex = root.list.indexOf(newFolderName);
-        if  (oldIndex == -1) {
-            System.out.println("Error : Folder " + oldFolderName + " not exist");
-            return;
-        }
-        if  (newIndex == -1) {
-            System.out.println("Error : Folder " + newFolderName + " not exist");
-            return;
-        }
-        //?
+        Folder oldFolder = searchFolderByName(oldFolderName);
+        Song theSong = searchSongByName(oldFolder, name);
 
-
+        addSong(newFolderName, theSong.isMP4, theSong.name, theSong.title, theSong.website, theSong.time);
+        deleteSong(oldFolderName, name);
         System.out.println("MoveSong Successfully");
     }
-    //search
 }
 class Folder {
     String name;

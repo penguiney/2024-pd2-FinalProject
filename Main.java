@@ -1,9 +1,10 @@
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 public class Main {
-    static ArrayList<Folder> Root;
+    static ArrayList<Folder> root;
     public static final int SCREEN_WIDTH = 300;
     public static final int SCREEN_HEIGHT = 350;
     public static void main(String[] args) {
