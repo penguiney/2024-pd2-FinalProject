@@ -47,6 +47,10 @@ public class ListStruct {
         deleteSong(oldFolderName, name);
         System.out.println("MoveSong Successfully");
     }
+    public void printRoot() {
+        ArrayList<Folder> root = Main.root;
+        for(Folder f : root) for(Song s : f.content) System.out.println("Folder name: " + f.name +" Song name: " + s.name + "\n");
+    }
 }
 class Folder {
     String name;
@@ -54,6 +58,7 @@ class Folder {
     ArrayList <Song> content;
     Folder(String name) {
         this.name = name;
+        this.content = new ArrayList<Song>();
     }
 }
 class Song {

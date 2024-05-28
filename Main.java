@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class Main {
-    static ArrayList<Folder> root;
+    static ArrayList<Folder> root = new ArrayList<Folder>();
     public static final int SCREEN_WIDTH = 300;
     public static final int SCREEN_HEIGHT = 350;
     public static void main(String[] args) {
@@ -14,5 +14,8 @@ public class Main {
 
         enterFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //set screen of close
         enterFrame.setVisible(true);    //can view the screen
+
+        testListStruct testList = new testListStruct();
+        testList.runtestList();
     }
 }
