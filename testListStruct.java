@@ -1,4 +1,4 @@
-public class testListStruct {
+public class TestListStruct {
 
     public void runtestList() {
         ListStruct struct = new ListStruct();

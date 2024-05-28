@@ -1,14 +1,20 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ListStruct {
+    private ArrayList<Folder> root;
+    ListStruct() {
+        this.root = Main.root;
+    }
+
     public Folder searchFolderByName (String name) {
-        ArrayList<Folder> root = Main.root;
         for(Folder f : root) {
             if(f.name == name) return f;
         }
         System.err.println("Error: ListStruct/searchFolderByName - No such folder");
         return null;
     }
+
     public Song searchSongByName (Folder folder, String name) {
         for(Song s : folder.content) {
             if(s.name == name) return s;
@@ -16,12 +22,13 @@ public class ListStruct {
         System.err.println("Error: ListStruct/searchSongByName - No such song");
         return null;
     } 
+
     public void addList(String name) {
-        ArrayList<Folder> root = Main.root;
         Folder folder = new Folder(name);
         root.add(folder);
         System.out.println("AddList Successfully");
     }
+
     public void addSong(String folderName, boolean isMP4, String name, String title, String website, int time) { //listName = FoderName
         Song song = new Song(isMP4, name, title, website, time);
 
@@ -29,16 +36,18 @@ public class ListStruct {
         folder.content.add(song);
         System.out.println("AddSong Successfully");
     }
+
     public void deleteList(String name) { //list = forder
-        ArrayList<Folder> root = Main.root;
         root.remove(searchFolderByName(name));
         System.out.println("DeleteList Successfully");
     }
+
     public void deleteSong(String folderName, String name) {
         Folder folder = searchFolderByName(folderName);
         folder.content.remove(searchSongByName(folder, name));
         System.out.println("DeleteSong Successfully");
     }
+
     public void moveSong(String name, String oldFolderName, String newFolderName) {
         Folder oldFolder = searchFolderByName(oldFolderName);
         Song theSong = searchSongByName(oldFolder, name);
@@ -47,12 +56,15 @@ public class ListStruct {
         deleteSong(oldFolderName, name);
         System.out.println("MoveSong Successfully");
     }
+
     public void printRoot() {
-        ArrayList<Folder> root = Main.root;
-        for(Folder f : root) for(Song s : f.content) System.out.println("Folder name: " + f.name +" Song name: " + s.name + "\n");
+        for(Folder f : root) 
+            for(Song s : f.content) 
+                System.out.println("Folder name: " + f.name +" Song name: " + s.name + "\n");
     }
 }
-class Folder {
+
+class Folder implements Serializable {
     String name;
     int length;
     ArrayList <Song> content;
@@ -61,7 +73,8 @@ class Folder {
         this.content = new ArrayList<Song>();
     }
 }
-class Song {
+
+class Song implements Serializable {
     boolean isMP4;
     String name;
     String title;
