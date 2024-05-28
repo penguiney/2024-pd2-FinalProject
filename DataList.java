@@ -32,6 +32,7 @@ public class DataList {
         }
 
     }
+    
     public void saveList() {
         public void serializ(String name) {
         try {
