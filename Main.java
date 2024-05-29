@@ -9,7 +9,7 @@ public class Main {
     public static final int SCREEN_HEIGHT = 350;
     public static void main(String[] args) {
         //DataList dataList = new DataList();
-        //dataList.loadList();
+        //dataList.loadList();    unserilization
 
         EnterScreen enterFrame = new EnterScreen();
         enterFrame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);   //set width and height
@@ -22,6 +22,6 @@ public class Main {
         testList.runtestList();
 
 
-        //dataList.saveList();
+        //dataList.saveList();   serilization
     }
 }
