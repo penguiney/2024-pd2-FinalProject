@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class ListStruct {
     private ArrayList<Folder> root;
+    DataList datalist = new DataList();
     ListStruct() {
         this.root = Main.root;
     }
@@ -27,6 +28,7 @@ public class ListStruct {
         Folder folder = new Folder(name);
         root.add(folder);
         System.out.println("AddList Successfully");
+        datalist.saveList();
     }
 
     public void addSong(String folderName, boolean isMP4, String name, String title, String website, int time) { //listName = FoderName
@@ -35,17 +37,20 @@ public class ListStruct {
         Folder folder = searchFolderByName(folderName);
         folder.content.add(song);
         System.out.println("AddSong Successfully");
+        datalist.saveList();
     }
 
     public void deleteList(String name) { //list = forder
         root.remove(searchFolderByName(name));
         System.out.println("DeleteList Successfully");
+        datalist.saveList();
     }
 
     public void deleteSong(String folderName, String name) {
         Folder folder = searchFolderByName(folderName);
         folder.content.remove(searchSongByName(folder, name));
         System.out.println("DeleteSong Successfully");
+        datalist.saveList();
     }
 
     public void moveSong(String name, String oldFolderName, String newFolderName) {
@@ -55,6 +60,7 @@ public class ListStruct {
         addSong(newFolderName, theSong.isMP4, theSong.name, theSong.title, theSong.website, theSong.time);
         deleteSong(oldFolderName, name);
         System.out.println("MoveSong Successfully");
+        datalist.saveList();
     }
 
     public void printRoot() {

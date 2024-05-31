@@ -21,7 +21,5 @@ public class Main {
         TestListStruct testList = new TestListStruct();
         testList.runtestList();
 
-
-        //dataList.saveList();   serilization
     }
 }
