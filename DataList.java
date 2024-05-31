@@ -32,8 +32,7 @@ public class DataList {
 
     }
     
-    public void saveList() {
-        public void serializ(String name) {
+    public void saveList() { //save list after modifly
         try {
             FileOutputStream fos = new FileOutputStream("list.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
