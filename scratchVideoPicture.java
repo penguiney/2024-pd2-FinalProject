@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.net.URL;
 
-public class scratchVideoPicture {
+public class ScratchVideoPicture {
 
     public static void main(String[] args) {
         String videoId = "ZbqagJgjRYE";  // 替換想要的影片ID
