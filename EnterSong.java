@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class EnterSong  extends JFrame implements ActionListener{
+public class EnterSong  extends inputFolderName implements ActionListener{
     private JLabel folderNameLabel;
     private JButton addSong,removeSong,moveSong,lastOpenFolder;
 

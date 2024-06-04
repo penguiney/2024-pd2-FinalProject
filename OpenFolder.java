@@ -18,6 +18,8 @@ public class OpenFolder extends EnterSong implements ActionListener{
 
         createFolder = new JButton("create");
         createFolder.setBounds(175, 310, 175, 50);
+        createFolder.setActionCommand("createFolder");
+        createFolder.addActionListener(this);
 
         EnterFolder = new JButton("Enter");
         EnterFolder.setBounds(0, 360, 350, 50);
@@ -26,7 +28,9 @@ public class OpenFolder extends EnterSong implements ActionListener{
 
     }
 
-    public void actionPerformed(ActionEvent e){}  //declare the function
+    public void actionPerformed(ActionEvent e){
+        //you need to write, use override
+    } 
 
     public void appearOpenFolderScreen(){
         add(lastPage);
