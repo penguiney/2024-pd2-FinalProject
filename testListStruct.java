@@ -16,7 +16,7 @@ public class TestListStruct {
         struct.deleteList("TEST_FOLDER_2");
         struct.moveSong("TEST_SONG_2", "TEST_FOLDER_1", "TEST_FOLDER_3");
 
-        struct.printRoot(); //will printï¼š folder1- song1 | folder3- song2
+        struct.printRoot(); //will printï¼? folder1- song1 | folder3- song2
 
         struct.addSong("TEST_FOLDER_4", false, "TEST_SONG_1", "TEST_TITLE", "TEST_WEBSITE", 0); // will print error
     } 

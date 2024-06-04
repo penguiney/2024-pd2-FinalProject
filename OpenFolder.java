@@ -8,19 +8,19 @@ public class OpenFolder extends EnterSong implements ActionListener{
     private JButton lastPage, manageFolder,createFolder,EnterFolder;
 
     public OpenFolder(){
-        lastPage = new JButton("Last");
+        lastPage = new JButton("Back");
         lastPage.setBounds(0, 0, 80, 50);
         lastPage.setActionCommand("last page to EnterScreen");
         lastPage.addActionListener(this);
 
         manageFolder = new JButton("Manage");
-        manageFolder.setBounds(50, 300,100, 50);
+        manageFolder.setBounds(0, 310,175, 50);
 
         createFolder = new JButton("create");
-        createFolder.setBounds(200, 300, 100, 50);
+        createFolder.setBounds(175, 310, 175, 50);
 
         EnterFolder = new JButton("Enter");
-        EnterFolder.setBounds(120, 350, 80, 50);
+        EnterFolder.setBounds(0, 360, 350, 50);
         EnterFolder.setActionCommand("go to EnterSong");
         EnterFolder.addActionListener(this);
 

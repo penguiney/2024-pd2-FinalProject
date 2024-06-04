@@ -20,7 +20,7 @@ public class DataList {
             root = (ArrayList<Folder>) ois.readObject();
             ois.close();
             fis.close();
-            //System.out.println("反序列化成功！");
+            //System.out.println("Serialization successful");
         } catch (IOException ioe) {
             ioe.printStackTrace();
             return;
@@ -39,7 +39,7 @@ public class DataList {
             oos.writeObject(root);
             oos.close();
             fos.close();
-            System.out.println("序列化成功！");
+            System.out.println("Serialization successful");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

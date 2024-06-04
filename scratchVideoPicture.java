@@ -12,7 +12,7 @@ import java.net.URL;
 public class scratchVideoPicture {
 
     public static void main(String[] args) {
-        String videoId = "ZbqagJgjRYE";  // 替换为您想要的视频ID
+        String videoId = "ZbqagJgjRYE";  // 替換想要的影片ID
         String imageUrl = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
         
         try {
@@ -20,12 +20,12 @@ public class scratchVideoPicture {
             InputStream in = url.openStream();
             BufferedImage originalImage = ImageIO.read(in);
             
-            // 调整影片封面图片在music player大小
-            int newWidth = 320; // GUI處理  目标宽度
-            int newHeight = 180; // GUI處理  目标高度
+            // 調整影片鋒面在music player的大小
+            int newWidth = 320; // GUI處理  目標寬度
+            int newHeight = 180; // GUI處理  目標高度
             BufferedImage resizedImage = resizeImage(originalImage, newWidth, newHeight);
 
-            // GUI處理 在一个窗口中显示图片
+            // GUI處理 顯示圖片
             JFrame frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(640, 360);
