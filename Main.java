@@ -10,16 +10,13 @@ public class Main {
     public static void main(String[] args) {
         //DataList dataList = new DataList();
         //dataList.loadList();    unserilization
-
-        Action startMusicPlayer = new Action();
+        ListStruct struct = new ListStruct();
+        Action startMusicPlayer = new Action(struct);
         startMusicPlayer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);   //set width and height
         startMusicPlayer.setTitle("Music Player");   //name name of screen
 
         startMusicPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //set screen of close
         startMusicPlayer.setVisible(true);    //can view the screen
-
-        TestListStruct testList = new TestListStruct();
-        testList.runtestList();
 
     }
 }

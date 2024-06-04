@@ -28,6 +28,7 @@ public class ListStruct {
         Folder folder = new Folder(name);
         root.add(folder);
         System.out.println("AddList Successfully");
+        System.out.println(name);
         datalist.saveList();
     }
 
