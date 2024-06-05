@@ -11,6 +11,12 @@ public class Main {
         //DataList dataList = new DataList();
         //dataList.loadList();    unserilization
         ListStruct struct = new ListStruct();
+
+
+        struct.addList("TestList1");
+        struct.addSong("TestList1", );//自己加 String folderName, boolean isMP4, String name, String title, String website, int time
+
+
         Action startMusicPlayer = new Action(struct);
         startMusicPlayer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);   //set width and height
         startMusicPlayer.setTitle("Music Player");   //name name of screen
