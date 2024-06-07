@@ -1,3 +1,5 @@
+package finalproject;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -7,9 +9,17 @@ import java.io.InputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ParseSong {
     public static int videoWidth = 320;
@@ -17,11 +27,10 @@ public class ParseSong {
 
     public void goParse(String website, String folder) {
         String id = getID(website);
-        getMp3ByWebsite(id, folder);
         getVideoPicturebyWebsite(id, folder);
         getOthersByAPI();//TODO
-
-
+        String title = "";
+        getMp3bySelenium(website, title);
     }
 
     public String getID(String website) {
@@ -34,15 +43,9 @@ public class ParseSong {
         return website;
     }
 
-    public void getMp3ByWebsite(String id, String folder) {
-        String website = "https://img.youtube.com/vi/" + id + "/maxresdefault.jpg";
-    }
-
-
-    
     public void getVideoPicturebyWebsite(String id, String folder) {
         String website = "https://img.youtube.com/vi/" + id + "/maxresdefault.jpg";
-        String path;
+        String path = "";
         try {
             URL url = new URL(website);
             InputStream in = url.openStream();
@@ -76,5 +79,39 @@ public class ParseSong {
 
     public void getOthersByAPI() {
 
+    }
+   
+    public void getMp3bySelenium(String website, String title) {
+        System.setProperty("webdriver.chrome.driver", "C:/Program Files/Google/Chrome/pplication/chromedriver.exe"); //TODO：might be change
+		
+		WebDriver driver = new ChromeDriver();
+		//parse file
+		driver.get("https://mp3-juices.nu/ajdO/");
+		WebElement element = driver.findElement(By.id("query") );
+		element.sendKeys(website);
+		element.sendKeys("\n");
+		try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch ( InterruptedException e) {
+			e.printStackTrace();
+		}
+		element = driver.findElement(By.className("1"));
+		element.click();
+		try {
+			TimeUnit.SECONDS.sleep(5);
+		} catch ( InterruptedException e) {
+			e.printStackTrace();
+		}
+		element.click();
+		//move file
+		Path sourcePath = Paths.get(System.getProperty("user.home") + "/下載/" + "青蛙撞奶" + ".txt");
+    	Path targetPath = Paths.get("./music/");
+    	try {
+     		Files.move(sourcePath, targetPath);
+    	} catch (FileAlreadyExistsException ex) {
+      		System.out.println("Error: ParseSongBySelenium - file already exist");
+    	} catch (IOException io) {
+			System.out.println("Error: ParseSongBySelenium - I/O error");
+    	}  
     }
 }
