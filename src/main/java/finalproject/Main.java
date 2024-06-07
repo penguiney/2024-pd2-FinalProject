@@ -16,7 +16,7 @@ public class Main {
 
 
         struct.addList("TestList1");
-        //struct.addSong("TestList1", );//自己加 String folderName, boolean isMP4, String name, String title, String website, int time
+        //struct.addSong("TestList1", );//自己加 String folderName, boolean isMP4, String name, String website
 
 
         Action startMusicPlayer = new Action(struct);

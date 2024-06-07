@@ -9,10 +9,10 @@ public class TestListStruct {
         struct.addList("TEST_FOLDER_2");
         struct.addList("TEST_FOLDER_3");
 
-        struct.addSong("TEST_FOLDER_1", false, "TEST_SONG_1", "TEST_TITLE", "TEST_WEBSITE", 0);
-        struct.addSong("TEST_FOLDER_1", false, "TEST_SONG_2", "TEST_TITLE", "TEST_WEBSITE", 0);
-        struct.addSong("TEST_FOLDER_2", false, "TEST_SONG_3", "TEST_TITLE", "TEST_WEBSITE", 0);
-        struct.addSong("TEST_FOLDER_3", false, "TEST_SONG_1", "TEST_TITLE", "TEST_WEBSITE", 0);
+        struct.addSong("TEST_FOLDER_1", false, "TEST_SONG_1","TEST_WEBSITE");
+        struct.addSong("TEST_FOLDER_1", false, "TEST_SONG_2","TEST_WEBSITE");
+        struct.addSong("TEST_FOLDER_2", false, "TEST_SONG_3","TEST_WEBSITE");
+        struct.addSong("TEST_FOLDER_3", false, "TEST_SONG_1","TEST_WEBSITE");
 
         struct.deleteSong("TEST_FOLDER_3", "TEST_SONG_1");
         struct.deleteList("TEST_FOLDER_2");
@@ -20,6 +20,6 @@ public class TestListStruct {
 
         struct.printRoot(); //will print�? folder1- song1 | folder3- song2
 
-        struct.addSong("TEST_FOLDER_4", false, "TEST_SONG_1", "TEST_TITLE", "TEST_WEBSITE", 0); // will print error
+        struct.addSong("TEST_FOLDER_4", false, "TEST_SONG_1", "TEST_WEBSITE"); // will print error
     } 
 }

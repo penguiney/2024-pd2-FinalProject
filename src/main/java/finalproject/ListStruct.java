@@ -34,8 +34,8 @@ public class ListStruct {
         datalist.saveList();
     }
 
-    public void addSong(String folderName, boolean isMP4, String name, String title, String website, int time) { //listName = FoderName
-        Song song = new Song(isMP4, name, title, website, time);
+    public void addSong(String folderName, boolean isMP4, String name, String website) { //listName = FoderName
+        Song song = new Song(isMP4, name, website);
 
         Folder folder = searchFolderByName(folderName);
         folder.content.add(song);
@@ -60,7 +60,7 @@ public class ListStruct {
         Folder oldFolder = searchFolderByName(oldFolderName);
         Song theSong = searchSongByName(oldFolder, name);
 
-        addSong(newFolderName, theSong.isMP4, theSong.name, theSong.title, theSong.website, theSong.time);
+        addSong(newFolderName, theSong.isMP4, theSong.name, theSong.website);
         deleteSong(oldFolderName, name);
         System.out.println("MoveSong Successfully");
         datalist.saveList();
@@ -86,14 +86,10 @@ class Folder implements Serializable {
 class Song implements Serializable {
     boolean isMP4;
     String name;
-    String title;
     String website;
-    int time;
-    Song(boolean isMP4, String name, String title, String website, int time) {
+    Song(boolean isMP4, String name, String website) {
         this.isMP4 = isMP4;
         this.name = name;
-        this.title = title;;
         this.website = website;
-        this.time = time;
     }
 }

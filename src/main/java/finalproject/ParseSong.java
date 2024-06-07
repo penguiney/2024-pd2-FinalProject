@@ -22,15 +22,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ParseSong {
+    public static String api_key = "AIzaSyAUlDMhU-2Oao7I23dk68R8ilYP6_L0LQc";
     public static int videoWidth = 320;
     public static int videoHeight = 180;
 
     public void goParse(String website, String folder) {
         String id = getID(website);
-        getVideoPicturebyWebsite(id, folder);
-        getOthersByAPI();//TODO
-        String title = "";
-        getMp3bySelenium(website, title);
+        String name = "";
+
+        getNameByAPI(id, api_key);
+        getMp3bySelenium(website, name);
+        getVideoPicturebyWebsite(name, id);
+
+        ListStruct struct = new ListStruct();
+        struct.addSong(folder, false, name, website);
     }
 
     public String getID(String website) {
@@ -43,9 +48,8 @@ public class ParseSong {
         return website;
     }
 
-    public void getVideoPicturebyWebsite(String id, String folder) {
+    public void getVideoPicturebyWebsite(String title, String id) {
         String website = "https://img.youtube.com/vi/" + id + "/maxresdefault.jpg";
-        String path = "";
         try {
             URL url = new URL(website);
             InputStream in = url.openStream();
@@ -53,7 +57,7 @@ public class ParseSong {
             BufferedImage image = ImageIO.read(in); 
             BufferedImage resizedImage = resizeImage(image);
             // save image
-            File file = new File("/pic/" + path + ".jpg");//-----------------------------------TODO:圖片名字
+            File file = new File("/pic/" + title + ".jpg");
             ImageIO.write(resizedImage, "jpg", file);
             in.close();
         } catch (IOException ioe) {
@@ -77,8 +81,25 @@ public class ParseSong {
         return resizedImage;
     }
 
-    public void getOthersByAPI() {
+    public void getNameByAPI(String id, String key) {
 
+        //will get
+        String title = "";
+        
+		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver(); // googleChrome
+
+        String url = "https://www.googleapis.com/youtube/v3/videos?id=" + id + "&key=" + api_key + "&part=snippet";
+
+        driver.get(url);
+        String content = driver.findElement(By.xpath("/html/body/pre")).getText();
+
+        content = content.substring(content.indexOf("\"title\": "));
+        content = content.substring(10);
+        title = content.substring(0, content.indexOf('\"'));
+        System.out.println(title);
+        //System.out.println(content);
     }
    
     public void getMp3bySelenium(String website, String title) {
