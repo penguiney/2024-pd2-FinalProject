@@ -11,28 +11,29 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ParseSongBySelenium
 {
     public static void main(String[] args) {
-		//Not ready
+		ChromeOptions co = new ChromeOptions();
+		co.addArguments("-headless");
 
-
-
-
-		//若瀏覽器安裝位置為預設則webDriver會自動搜尋path設定的位置，也可以使用System.setProperty 來指定路徑
-		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe");
-		//Selenium對不同瀏覽器提供了不同的webDriver
-		WebDriver driver = new ChromeDriver(); // googleChrome
-		// Firefox
-		//WebDriver firefoxDriver = new FirefoxDriver();  
-		// 到Google首頁
+		System.setProperty("webdriver.chrome.driver", "C:/Program Files/Google/Chrome/Application/chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver(); 
+		
 		driver.get("https://mp3-juices.nu/ajdO/");
 		
 		WebElement element = driver.findElement(By.id("query") );
 		element.sendKeys("https://www.youtube.com/watch?v=8QHaRNPCvMk");
 
 		//element = driver.findElement(By.);
+		try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch ( InterruptedException e) {
+			e.printStackTrace();
+		}
 		element.sendKeys("\n");
 
 		try {
@@ -52,8 +53,15 @@ public class ParseSongBySelenium
 
 		element.click();
 		//青蛙撞奶
-		Path sourcePath = Paths.get(System.getProperty("user.home") + "/下載/" + "青蛙撞奶" + ".txt");
-    	Path targetPath = Paths.get("./music/");
+		try {
+			TimeUnit.SECONDS.sleep(5);
+		} catch ( InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Start moving...");
+
+		Path sourcePath = Paths.get(System.getProperty("user.home") + "/Downloads/" + "青蛙撞奶" + ".mp3");
+    	Path targetPath = Paths.get("./music/" + "青蛙撞奶" + ".mp3");
 
     	try {
      		Files.move(sourcePath, targetPath);
@@ -63,5 +71,6 @@ public class ParseSongBySelenium
 			System.out.println("Error: ParseSongBySelenium - I/O error");
     	}
 
+		driver.quit();
 	}
 }
