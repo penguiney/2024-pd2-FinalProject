@@ -8,8 +8,8 @@ public class ListStruct {
     DataList datalist = new DataList();
     ListStruct() {
         this.root = Main.root;
-    }
-
+    }  
+    
     public Folder searchFolderByName (String name) {
         for(Folder f : root) {
             if(f.name == name) return f;

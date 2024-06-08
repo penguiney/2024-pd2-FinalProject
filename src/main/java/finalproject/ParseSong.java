@@ -1,7 +1,5 @@
 package finalproject;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +28,7 @@ public class ParseSong {
         String api_key = "AIzaSyAUlDMhU-2Oao7I23dk68R8ilYP6_L0LQc";
         String id = getID(website);
         String name = "";
+
 
         name = getNameByAPI(id, api_key);
         getMp3bySelenium(website, name);
@@ -126,21 +125,23 @@ public class ParseSong {
 		}
 		element.click();
 		//---move file
+        String oldPlace = System.getProperty("user.home") + "/Downloads/" + title + ".mp3";
         try {
-			TimeUnit.SECONDS.sleep(3);//TODO : Dowdload time
+            File file = new File(oldPlace);
+            while(!file.exists()) TimeUnit.SECONDS.sleep(1);
 		} catch ( InterruptedException e) {
 			e.printStackTrace();
 		}
-		Path sourcePath = Paths.get(System.getProperty("user.home") + "/Downloads/" + title + ".mp3");//TODO : Dowdload folder name
-    	Path targetPath = Paths.get("./music/" + title + ".mp3");
+		Path oldPath = Paths.get(oldPlace);
+    	Path newPath = Paths.get("./music/" + title + ".mp3");
     	try {
-     		Files.move(sourcePath, targetPath);
+     		Files.move(oldPath, newPath);
     	} catch (FileAlreadyExistsException ex) {
       		System.out.println("Error: ParseSongBySelenium - file already exist");
     	} catch (IOException io) {
 			System.out.println("Error: ParseSongBySelenium - I/O error");
     	}  
-        driver.close();
+        driver.quit();
         System.out.println("Getting Mp3 successfully");
     }
 }
