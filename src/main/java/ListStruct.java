@@ -71,23 +71,5 @@ public class ListStruct {
     }
 }
 
-class Folder implements Serializable {
-    String name;
-    int length;
-    ArrayList <Song> content;
-    Folder(String name) {
-        this.name = name;
-        this.content = new ArrayList<Song>();
-    }
-}
 
-class Song implements Serializable {
-    boolean isMP4;
-    String name;
-    String website;
-    Song(boolean isMP4, String name, String website) {
-        this.isMP4 = isMP4;
-        this.name = name;
-        this.website = website;
-    }
-}
+
