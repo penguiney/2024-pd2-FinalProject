@@ -1,5 +1,3 @@
-package finalproject;
-
 import javax.swing.*;
 
 import java.awt.Color;

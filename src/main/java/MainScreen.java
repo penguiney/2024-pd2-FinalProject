@@ -1,5 +1,3 @@
-package finalproject;
-
 import java.awt.Frame;
 
 import javax.swing.*;

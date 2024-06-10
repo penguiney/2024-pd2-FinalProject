@@ -1,5 +1,3 @@
-package finalproject;
-
 public class testWholeParse {
     public static void main(String[] args) {
         ParseSong parsebot = new ParseSong();

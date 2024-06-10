@@ -1,5 +1,3 @@
-package finalproject;
-
 public class TestListStruct {
 
     public void runtestList() {
