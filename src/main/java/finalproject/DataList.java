@@ -1,6 +1,7 @@
 
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 public class DataList {
 
     String FILE_FOLDER = "music/";
-    ArrayList <Folder> root;
+    static ArrayList<Folder> root = new ArrayList<>();
     DataList() {
         this.root = Main.root;
     }
@@ -22,14 +23,15 @@ public class DataList {
             root = (ArrayList<Folder>) ois.readObject();
             ois.close();
             fis.close();
-            //System.out.println("Serialization successful");
-        } catch (IOException ioe) {
+            System.out.println("unSerialization successful");
+            return ;
+        }catch (IOException ioe) {
             ioe.printStackTrace();
             return;
         } catch (ClassNotFoundException c) {
             System.out.println("Error: datalist/loadList - list.ser not found");
             c.printStackTrace();
-            return;
+            return ;
         }
 
     }
@@ -41,7 +43,7 @@ public class DataList {
             oos.writeObject(root);
             oos.close();
             fos.close();
-            System.out.println("Serialization successful");
+            System.out.println("Serialization store successful");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

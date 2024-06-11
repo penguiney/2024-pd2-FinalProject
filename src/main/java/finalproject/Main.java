@@ -8,16 +8,16 @@ import javax.swing.JFrame;
 
 
 public class Main { 
-    static ArrayList<Folder> root = new ArrayList<Folder>();
+    public static ArrayList<Folder> root = new ArrayList<>();
     public static final int SCREEN_WIDTH = 350;
     public static final int SCREEN_HEIGHT = 450;
     public static void main(String[] args) {
+
         //DataList dataList = new DataList();
-        //dataList.loadList();    unserilization
+        //root = dataList.loadList();    //unserilization
         ListStruct struct = new ListStruct();
 
-
-        struct.addList("TestList1");
+        struct.addList("TestList1"); //if name in "struct" have existed,we need to do alarn
         //struct.addSong("TestList1", );//need add String folderName, boolean isMP4, String name, String website
 
 

@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ListStruct {
-    private ArrayList<Folder> root;
+    static private ArrayList<Folder> root;
     DataList datalist = new DataList();
+
     ListStruct() {
         this.root = Main.root;
     }  
@@ -68,8 +69,15 @@ public class ListStruct {
 
     public void printRoot() {
         for(Folder f : root) 
+        {
+            System.out.println("Folder name: "+f.name);
             for(Song s : f.content) 
                 System.out.println("Folder name: " + f.name +" Song name: " + s.name + "\n");
+        }    
+    }
+
+    public ArrayList<Folder> getRoot(){
+        return root;
     }
 }
 
