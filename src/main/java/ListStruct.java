@@ -2,15 +2,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ListStruct {
-    private ArrayList<Folder> root;
     DataList datalist = new DataList();
-    ListStruct() {
-        this.root = Main.root;
-    }  
     
     public Folder searchFolderByName (String name) {
-        for(Folder f : root) {
-            if(f.name == name) return f;
+        for(Folder f : Main.root.listContent) {
+            if(f.name.equals(name)) return f;
         }
         System.err.println("Error: ListStruct/searchFolderByName - No such folder");
         return null;
@@ -18,15 +14,29 @@ public class ListStruct {
 
     public Song searchSongByName (Folder folder, String name) {
         for(Song s : folder.content) {
-            if(s.name == name) return s;
+            if(s.name.equals(name)) return s;
         }
         System.err.println("Error: ListStruct/searchSongByName - No such song");
         return null;
     } 
 
+    public boolean searchFolder (String name) {
+        for(Folder f : Main.root.listContent) if(f.name.equals(name)) return true;
+        return false;
+    }
+
+    public boolean searchSong (Folder folder, String name) {
+        for(Song s : folder.content) if(s.name.equals(name)) return true;
+        return false;
+    }
+
     public void addList(String name) {
         Folder folder = new Folder(name);
-        root.add(folder);
+        if(searchFolder(name)) {
+            System.out.println("Error: ListStruct/addList - List already exist"); 
+            return; 
+        }
+        Main.root.listContent.add(folder);
         System.out.println("AddList Successfully");
         System.out.println(name);
         datalist.saveList();
@@ -34,15 +44,19 @@ public class ListStruct {
 
     public void addSong(String folderName, boolean isMP4, String name, String website) { //listName = FoderName
         Song song = new Song(isMP4, name, website);
-
+        
         Folder folder = searchFolderByName(folderName);
+        if(searchSong(folder, name)) {
+            System.out.println("Error: ListStruct/addSong - Song already exist"); 
+            return; 
+        }
         folder.content.add(song);
         System.out.println("AddSong Successfully");
         datalist.saveList();
     }
 
     public void deleteList(String name) { //list = forder
-        root.remove(searchFolderByName(name));
+        Main.root.listContent.remove(searchFolderByName(name));
         System.out.println("DeleteList Successfully");
         datalist.saveList();
     }
@@ -65,9 +79,11 @@ public class ListStruct {
     }
 
     public void printRoot() {
-        for(Folder f : root) 
-            for(Song s : f.content) 
+        for(Folder f : Main.root.listContent) {
+            for(Song s : f.content) {
                 System.out.println("Folder name: " + f.name +" Song name: " + s.name + "\n");
+            }
+        }
     }
 }
 

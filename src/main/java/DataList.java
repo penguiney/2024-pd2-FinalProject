@@ -1,3 +1,4 @@
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,20 +8,20 @@ import java.util.ArrayList;
 
 public class DataList {
 
-    String FILE_FOLDER = "music/";
-    ArrayList <Folder> root;
-    DataList() {
-        this.root = Main.root;
-    }
+    //String FILE_FOLDER = "music/";
+    //ArrayList <Folder> root;
+    //DataList() {
+    //    this.root = Main.root;
+    //}
     
     public void loadList() { //load list from file
         try {
             FileInputStream fis = new FileInputStream("list.ser");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            root = (ArrayList<Folder>) ois.readObject();
+            Main.root = (Root) ois.readObject();
             ois.close();
             fis.close();
-            //System.out.println("Serialization successful");
+            System.out.println("Unserialization successful");
         } catch (IOException ioe) {
             ioe.printStackTrace();
             return;
@@ -34,14 +35,14 @@ public class DataList {
     
     public void saveList() { //save list after modifly
         try {
-            FileOutputStream fos = new FileOutputStream("list.ser");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(root);
-            oos.close();
-            fos.close();
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("list.ser"));
+            out.writeObject(Main.root);
+            out.close();
+
             System.out.println("Serialization successful");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+   
     }
 }
