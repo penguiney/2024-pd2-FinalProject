@@ -1,4 +1,4 @@
-package finalproject;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -14,7 +14,7 @@ import java.net.URL;
 public class ScratchVideoPicture {
 
     public static void main(String[] args) {
-        String videoId = "ZbqagJgjRYE";  // 替換想要的影片ID
+        String videoId = "ZbqagJgjRYE";  // ??��????��?????影�??ID
         String imageUrl = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
         
         try {
@@ -22,12 +22,12 @@ public class ScratchVideoPicture {
             InputStream in = url.openStream();
             BufferedImage originalImage = ImageIO.read(in);
             
-            // 調整影片鋒面在music player的大小
-            int newWidth = 320; // GUI處理  目標寬度
-            int newHeight = 180; // GUI處理  目標高度
+            // 調�?�影????????��?�music player???大�??
+            int newWidth = 320; // GUI??????  ??��??寬度
+            int newHeight = 180; // GUI??????  ??��??�?�?
             BufferedImage resizedImage = resizeImage(originalImage, newWidth, newHeight);
 
-            // GUI處理 顯示圖片
+            // GUI?????? 顯示??????
             JFrame frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(640, 360);

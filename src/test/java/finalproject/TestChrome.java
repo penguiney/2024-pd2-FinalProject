@@ -1,19 +1,19 @@
-package finalproject;
+
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestChrome {
     public static void main(String[] args) {
-		//è‹¥ç€è¦½å™¨å®‰è£ä½ç½®ç‚ºé è¨­å‰‡webDriveræœƒè‡ªå‹•æœå°‹pathè¨­å®šçš„ä½ç½®ï¼Œä¹Ÿå¯ä»¥ä½¿ç”¨System.setProperty ä¾†æŒ‡å®šè·¯å¾‘
+		//??¥ç??è¦½å?¨å??è£?ä½?ç½®ç?ºé??è¨­å??webDriver?????ªå?????å°?pathè¨­å?????ä½?ç½®ï??ä¹???¯ä»¥ä½¿ç?¨System.setProperty ä¾????å®?è·¯å??
 		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe");
-		//Seleniumå°ä¸åŒç€è¦½å™¨æä¾›äº†ä¸åŒçš„webDriver
+		//Seleniumå°?ä¸???????è¦½å?¨æ??ä¾?äº?ä¸???????webDriver
 		WebDriver driver = new ChromeDriver(); // googleChrome
 		// Firefox
 		//WebDriver firefoxDriver = new FirefoxDriver();  
-		// åˆ°Googleé¦–é 
+		// ??°Googleé¦????
 		driver.get("https://en.ytmp3s.nu/EFcx/");
-		// å–å¾—pageTitle
+		// ???å¾?pageTitle
 		String title = driver.getTitle();
 		System.out.print(title);
 	}

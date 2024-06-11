@@ -1,4 +1,4 @@
-package finalproject;
+
 
 public class TestListStruct {
 
@@ -18,7 +18,7 @@ public class TestListStruct {
         struct.deleteList("TEST_FOLDER_2");
         struct.moveSong("TEST_SONG_2", "TEST_FOLDER_1", "TEST_FOLDER_3");
 
-        struct.printRoot(); //will printï¿½? folder1- song1 | folder3- song2
+        struct.printRoot(); //will printï¿?? folder1- song1 | folder3- song2
 
         struct.addSong("TEST_FOLDER_4", false, "TEST_SONG_1", "TEST_WEBSITE"); // will print error
     } 
