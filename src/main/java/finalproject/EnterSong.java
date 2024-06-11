@@ -30,7 +30,7 @@ public class EnterSong  extends inputFolderName implements ActionListener{
         removeSong = new JButton("remove");
         removeSong.setBounds(110, 50, 130, 50);
 
-        moveSong = new JButton("remove");
+        moveSong = new JButton("move");
         moveSong.setBounds(240,50,110,50);
     }
 

@@ -4,6 +4,7 @@ import java.awt.event.*;;
 
 public class Action extends EnterScreen{
     private ListStruct struct;
+
     public Action(ListStruct struct){
         this.struct = struct;
     }
@@ -15,13 +16,15 @@ public class Action extends EnterScreen{
             exitOpenFolderScreen();
             appearEnterScreen();
             repaint();
-        }
-        else if (buttonAction.equals("go to EnterSong")){
+        }else if (buttonAction.equals("go to EnterSong")){
             exitOpenFolderScreen();
             appearEnterSong();
             repaint();
         }else if(buttonAction.equals("last to OpenFolder")){
             exitEnterSong();
+            setStruct(struct);
+            struct.printRoot(); //know name of folder
+            appearFolderImage();
             appearOpenFolderScreen();
             repaint();
         }else if(buttonAction.equals("createFolder")){
@@ -29,6 +32,26 @@ public class Action extends EnterScreen{
         }else if(buttonAction.equals("ensure Folder")){
             struct.addList(getFolderName());
             exitinputFolderName();
+            struct.printRoot(); //know name of folder
+            storeFolderNameButton(getFolderName());
+            appearFolderImage();
+            appearOpenFolderScreen();
+            repaint();
+        }else if(buttonAction.equals("remove Folder")){
+            //wait to do
+        }
+    }
+
+    public void mouseClicked(MouseEvent mouseEvent) {
+        OpenFolder openFolder = new OpenFolder();
+        if(isInEnterScreen){
+            isInEnterScreen = false;
+            exitEnterScreen();              
+            setStruct(struct);
+            struct.printRoot(); //know name of folder
+            appearFolderImage();
+            appearOpenFolderScreen();
+            repaint();                      //refresh screen
         }
     }
 }

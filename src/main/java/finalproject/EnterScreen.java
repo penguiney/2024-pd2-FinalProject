@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JButton;
 
 
 
@@ -51,13 +52,7 @@ public class EnterScreen extends OpenFolder implements MouseListener {
     public void mouseExited(MouseEvent mouseEvent) {}     //not need to use
     public void mouseReleased(MouseEvent mouseEvent) {}   //not need to use
     public void mouseClicked(MouseEvent mouseEvent) {
-        //OpenFolder openFolder = new OpenFolder();
-        if(isInEnterScreen){
-            isInEnterScreen = false;
-            exitEnterScreen();              
-            appearOpenFolderScreen();
-            repaint();                      //refresh screen
-        }
+        //have override
     }
 
     public void actionPerformed(ActionEvent e){}
