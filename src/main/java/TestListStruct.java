@@ -1,5 +1,8 @@
+<<<<<<< HEAD:src/test/java/finalproject/TestListStruct.java
 
 
+=======
+>>>>>>> d8ce52da585265c15cacfd9574043a6601ec52d3:src/main/java/TestListStruct.java
 public class TestListStruct {
 
     public void runtestList() {
@@ -17,9 +20,16 @@ public class TestListStruct {
         struct.deleteSong("TEST_FOLDER_3", "TEST_SONG_1");
         struct.deleteList("TEST_FOLDER_2");
         struct.moveSong("TEST_SONG_2", "TEST_FOLDER_1", "TEST_FOLDER_3");
+<<<<<<< HEAD:src/test/java/finalproject/TestListStruct.java
 
         struct.printRoot(); //will printï¿?? folder1- song1 | folder3- song2
 
         struct.addSong("TEST_FOLDER_4", false, "TEST_SONG_1", "TEST_WEBSITE"); // will print error
+=======
+        System.out.println("0000000000");
+        struct.printRoot(); //will printï¿½? folder1- song1 | folder3- song2
+        System.out.println("0000000000");
+        //struct.addSong("TEST_FOLDER_4", false, "TEST_SONG_1", "TEST_WEBSITE"); // will print error
+>>>>>>> d8ce52da585265c15cacfd9574043a6601ec52d3:src/main/java/TestListStruct.java
     } 
 }

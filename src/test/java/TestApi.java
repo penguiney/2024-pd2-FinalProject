@@ -1,5 +1,8 @@
+<<<<<<< HEAD:src/test/java/finalproject/TestApi.java
 
 
+=======
+>>>>>>> d8ce52da585265c15cacfd9574043a6601ec52d3:src/test/java/TestApi.java
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

@@ -1,5 +1,8 @@
+<<<<<<< HEAD:src/test/java/finalproject/TestMoveFile.java
 
 
+=======
+>>>>>>> d8ce52da585265c15cacfd9574043a6601ec52d3:src/test/java/TestMoveFile.java
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;

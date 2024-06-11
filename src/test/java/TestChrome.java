@@ -1,5 +1,8 @@
+<<<<<<< HEAD:src/test/java/finalproject/TestChrome.java
 
 
+=======
+>>>>>>> d8ce52da585265c15cacfd9574043a6601ec52d3:src/test/java/TestChrome.java
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 

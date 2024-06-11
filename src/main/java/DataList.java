@@ -1,5 +1,4 @@
-
-
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,22 +9,21 @@ import java.util.ArrayList;
 
 public class DataList {
 
-    String FILE_FOLDER = "music/";
-    static ArrayList<Folder> root = new ArrayList<>();
-    DataList() {
-        this.root = Main.root;
-    }
+    //String FILE_FOLDER = "music/";
+    //ArrayList <Folder> root;
+    //DataList() {
+    //    this.root = Main.root;
+    //}
     
     public void loadList() { //load list from file
         try {
             FileInputStream fis = new FileInputStream("list.ser");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            root = (ArrayList<Folder>) ois.readObject();
+            Main.root = (Root) ois.readObject();
             ois.close();
             fis.close();
-            System.out.println("unSerialization successful");
-            return ;
-        }catch (IOException ioe) {
+            System.out.println("Unserialization successful");
+        } catch (IOException ioe) {
             ioe.printStackTrace();
             return;
         } catch (ClassNotFoundException c) {
@@ -38,14 +36,14 @@ public class DataList {
     
     public void saveList() { //save list after modifly
         try {
-            FileOutputStream fos = new FileOutputStream("list.ser");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(root);
-            oos.close();
-            fos.close();
-            System.out.println("Serialization store successful");
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("list.ser"));
+            out.writeObject(Main.root);
+            out.close();
+
+            System.out.println("Serialization successful");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+   
     }
 }

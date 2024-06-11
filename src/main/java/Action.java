@@ -1,5 +1,3 @@
-
-
 import java.awt.event.*;;
 
 public class Action extends EnterScreen{
@@ -24,7 +22,6 @@ public class Action extends EnterScreen{
             exitEnterSong();
             setStruct(struct);
             struct.printRoot(); //know name of folder
-            appearFolderImage();
             appearOpenFolderScreen();
             repaint();
         }else if(buttonAction.equals("createFolder")){
@@ -34,7 +31,6 @@ public class Action extends EnterScreen{
             exitinputFolderName();
             struct.printRoot(); //know name of folder
             storeFolderNameButton(getFolderName());
-            appearFolderImage();
             appearOpenFolderScreen();
             repaint();
         }else if(buttonAction.equals("remove Folder")){
@@ -49,7 +45,7 @@ public class Action extends EnterScreen{
             exitEnterScreen();              
             setStruct(struct);
             struct.printRoot(); //know name of folder
-            appearFolderImage();
+            initialFolderList();
             appearOpenFolderScreen();
             repaint();                      //refresh screen
         }

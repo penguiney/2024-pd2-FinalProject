@@ -10,7 +10,7 @@ import javax.swing.*;
 //import org.openqa.selenium.Dimension;
 
 public class OpenFolder extends EnterSong implements ActionListener{
-    private JButton lastPage,createFolder,EnterFolder,removerFolder;
+    private JButton lastPage,createFolder,EnterFolder,removerFolder,previousPage,nextPage;
     ImageIcon folderImageJpg = new ImageIcon("folder.png");
     private JLabel folderImage = new JLabel(folderImageJpg);
     private List<JButton> folderList = new ArrayList<>();
@@ -39,6 +39,16 @@ public class OpenFolder extends EnterSong implements ActionListener{
         removerFolder.setActionCommand("remove Folder");
         removerFolder.addActionListener(this);
 
+        previousPage = new JButton("Previous");
+        previousPage.setBounds(0, 360, 175, 50);
+        previousPage.setActionCommand("previous page");
+        previousPage.addActionListener(this);
+
+        nextPage = new JButton("Next");
+        nextPage.setBounds(175, 360, 175, 50);
+        nextPage.setActionCommand("next page");
+        nextPage.addActionListener(this);
+
     }
 
     public void actionPerformed(ActionEvent e){
@@ -55,6 +65,8 @@ public class OpenFolder extends EnterSong implements ActionListener{
             if(i + appearFolderIndex >= folderList.size()) break;
             add(folderList.get(i+appearFolderIndex));
         }
+        add(previousPage);
+        add(nextPage);
     }
 
     public void exitOpenFolderScreen(){
@@ -67,6 +79,8 @@ public class OpenFolder extends EnterSong implements ActionListener{
             if(i + appearFolderIndex >= folderList.size()) break;
             remove(folderList.get(i+appearFolderIndex));
         }
+        remove(previousPage);
+        remove(nextPage);
     } 
 
     public void setStruct(ListStruct struct){
@@ -83,7 +97,9 @@ public class OpenFolder extends EnterSong implements ActionListener{
         folderList.add(folderNameButton);
     }
 
-    public void appearFolderImage(){
-        //
+    public void initialFolderList(){
+        for(Folder f : root){
+            storeFolderNameButton(f.name);
+        }
     }   
 }

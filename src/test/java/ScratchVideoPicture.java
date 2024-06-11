@@ -1,5 +1,8 @@
+<<<<<<< HEAD:src/test/java/finalproject/ScratchVideoPicture.java
 
 
+=======
+>>>>>>> d8ce52da585265c15cacfd9574043a6601ec52d3:src/test/java/ScratchVideoPicture.java
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
