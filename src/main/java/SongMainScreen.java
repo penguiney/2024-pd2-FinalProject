@@ -10,8 +10,12 @@ public class SongMainScreen extends WarnScreen {
         slider.setBounds(50, 50,50,50);
     }
 
-    public void appearMainScreen(){
+    public void appearSongMainScreen(){
         add(slider);
+    }
+
+    public void exitSongMainScreen(){
+        remove(slider);
     }
     
 }
