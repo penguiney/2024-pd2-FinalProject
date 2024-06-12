@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/test/java/finalproject/ParseSongBySelenium.java
-
-=======
->>>>>>> d8ce52da585265c15cacfd9574043a6601ec52d3:src/test/java/ParseSongBySelenium.java
-import java.io.IOException;
+5import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -54,7 +50,7 @@ public class ParseSongBySelenium
 		}
 
 		element.click();
-		//青蛙撞奶
+		//?????????�?
 		try {
 			TimeUnit.SECONDS.sleep(5);
 		} catch ( InterruptedException e) {
@@ -62,8 +58,8 @@ public class ParseSongBySelenium
 		}
 		System.out.println("Start moving...");
 
-		Path sourcePath = Paths.get(System.getProperty("user.home") + "/Downloads/" + "青蛙撞奶" + ".mp3");
-    	Path targetPath = Paths.get("./music/" + "青蛙撞奶" + ".mp3");
+		Path sourcePath = Paths.get(System.getProperty("user.home") + "/Downloads/" + "?????????�?" + ".mp3");
+    	Path targetPath = Paths.get("./music/" + "?????????�?" + ".mp3");
 
     	try {
      		Files.move(sourcePath, targetPath);

@@ -1,5 +1,6 @@
 
 import java.util.*;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -13,10 +14,11 @@ public class OpenFolder extends EnterSong implements ActionListener{
     private JButton lastPage,createFolder,EnterFolder,removerFolder,previousPage,nextPage;
     ImageIcon folderImageJpg = new ImageIcon("folder.png");
     private JLabel folderImage = new JLabel(folderImageJpg);
-    private List<JButton> folderList = new ArrayList<>();
+    public List<JButton> folderList = new ArrayList<>();
+    private List<JLabel> folderImageList = new ArrayList<>();
     private ListStruct struct;
     private ArrayList<Folder> root;
-    private int appearFolderIndex = 0;
+    public int appearFolderIndex = 0;
 
     public OpenFolder(){ //center area height:50~310 weight:0~350
         lastPage = new JButton("Back");
@@ -49,6 +51,16 @@ public class OpenFolder extends EnterSong implements ActionListener{
         nextPage.setActionCommand("next page");
         nextPage.addActionListener(this);
 
+        folderImage.setBounds(100, 0, 150, 100);
+
+        for(int i = 0; i < 4;i++){
+            folderImage = new JLabel(folderImageJpg);
+            if(i == 0) folderImage.setBounds(0, 60, 150, 100);
+            else if(i == 1) folderImage.setBounds(200, 60, 150, 100);
+            else if(i == 2) folderImage.setBounds(0, 180, 150, 100);
+            else if(i == 3) folderImage.setBounds(200, 180, 150, 100);
+            folderImageList.add(folderImage);
+        }
     }
 
     public void actionPerformed(ActionEvent e){
@@ -64,9 +76,17 @@ public class OpenFolder extends EnterSong implements ActionListener{
         for(int i = 0;i < 4;i++){
             if(i + appearFolderIndex >= folderList.size()) break;
             add(folderList.get(i+appearFolderIndex));
+            add(folderImageList.get(i));
         }
         add(previousPage);
         add(nextPage);
+        add(folderImage);
+
+        //ensure num of "folderList".size() can go to "nextPage" or "previousPage"
+        previousPage.setEnabled(true);
+        nextPage.setEnabled(true);
+        if(appearFolderIndex == 0) previousPage.setEnabled(false);
+        if(folderList.size() - appearFolderIndex <= 4) nextPage.setEnabled(false);
     }
 
     public void exitOpenFolderScreen(){
@@ -78,9 +98,11 @@ public class OpenFolder extends EnterSong implements ActionListener{
         for(int i = 0;i < 4;i++){
             if(i + appearFolderIndex >= folderList.size()) break;
             remove(folderList.get(i+appearFolderIndex));
+            remove(folderImageList.get(i));
         }
         remove(previousPage);
         remove(nextPage);
+        remove(folderImage);
     } 
 
     public void setStruct(ListStruct struct){
@@ -90,16 +112,31 @@ public class OpenFolder extends EnterSong implements ActionListener{
 
     public void storeFolderNameButton(String name){
         JButton folderNameButton = new JButton(name);
-        if(folderList.size() % 4 == 0) folderNameButton.setBounds(0, 70, 150, 100);
-        else if(folderList.size() % 4 == 1)folderNameButton.setBounds(200, 70, 150, 100);
-        else if(folderList.size() % 4 == 2) folderNameButton.setBounds(0, 170, 150, 100);
-        else if(folderList.size() % 4 == 3)folderNameButton.setBounds(200, 170, 150, 100);
+        folderNameButton.setActionCommand(name);
+        folderNameButton.addActionListener(this);
+        folderImage = new JLabel(folderImageJpg);
+        if(folderList.size() % 4 == 0)folderNameButton.setBounds(0, 160, 150, 20);
+        else if(folderList.size() % 4 == 1) folderNameButton.setBounds(200, 160, 150, 20);
+        else if(folderList.size() % 4 == 2) folderNameButton.setBounds(0, 280, 150, 20);
+        else if(folderList.size() % 4 == 3) folderNameButton.setBounds(200, 280, 150, 20);
+        
+        folderNameButton.setActionCommand(name);
+        folderNameButton.addActionListener(this);
         folderList.add(folderNameButton);
     }
 
-    public void initialFolderList(){
+    public void initialFolderList(){  //when "EnterScreen" to "OpenFolder", we need to load Folders and show them
+        folderList = new ArrayList<>();
         for(Folder f : root){
+            System.out.println(f.name+" initial");
             storeFolderNameButton(f.name);
         }
-    }   
+    }
+    
+    public void removeFolderInFolderList(String folderName){  //when folder is removed, erase folder.name in "folderList"
+        for(int i = 0;i < root.size();i++){
+            if(root.get(i).name.equals(folderName)) folderList.remove(i);
+        }
+    }
 }
+

@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class inputFolderName extends JFrame implements ActionListener{
+public class inputFolderName extends SongMainScreen implements ActionListener{
     private JLabel Name = new JLabel("input Folder Name:");
     private JTextField outputName = new JTextField(16);
     private JButton ensureName;
