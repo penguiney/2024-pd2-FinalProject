@@ -18,13 +18,13 @@ public class SongMainScreen extends WarnScreen {
 
         previousSong = new JButton("previous");
         previousSong.setBounds(0, 360, 100, 50);
-        previousSong.setActionCommand("previousSong");
+        previousSong.setActionCommand("previous song");
         previousSong.addActionListener(this);
 
         startPlay = new JButton("start");
         startPlay.setBounds(100, 360, 150, 50);
-        //startPlay.setActionCommand("Start and Stop");
-        //startPlay.addActionListener(this);
+        startPlay.setActionCommand("Start and Stop");
+        startPlay.addActionListener(this);
 
         stopPlay = new JButton("stop");
         stopPlay.setBounds(100, 360, 150, 50);
@@ -33,8 +33,8 @@ public class SongMainScreen extends WarnScreen {
 
         nextSong = new JButton("next");
         nextSong.setBounds(250, 360, 100, 50);
-        //nextSong.setActionCommand("remove Folder");
-        //nextSong.addActionListener(this);
+        nextSong.setActionCommand("next song");
+        nextSong.addActionListener(this);
     }
 
     public void appearStartSongMainScreen(Song song){

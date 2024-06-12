@@ -135,6 +135,16 @@ public class Action extends EnterScreen{
             if(isStartSong) appearStopSongMainScreen(operateSong);
             else appearStartSongMainScreen(operateSong);
             repaint();
+        }else if(buttonAction.equals("previous song")){
+            exitSongMainScreen();
+            operateSong = findNextOrPreviousSong(operateSong.name,-1);
+            appearStartSongMainScreen(operateSong);
+            repaint();
+        }else if(buttonAction.equals("next song")){
+            exitSongMainScreen();
+            operateSong = findNextOrPreviousSong(operateSong.name,1);
+            appearStartSongMainScreen(operateSong);
+            repaint();
         } else{    //on "OpenFolder" when button of folder is clicked
             if(isFolder){
                 for(int folderIndex = 0;folderIndex < folderList.size();folderIndex++){  //when folder button is clicked, operate action on this folder
