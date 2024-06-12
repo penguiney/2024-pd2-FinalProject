@@ -12,7 +12,7 @@ import java.net.URL;
 public class ScratchVideoPicture {
 
     public static void main(String[] args) {
-        String videoId = "ZbqagJgjRYE";  // ??¿æ????³è?????å½±ç??ID
+        String videoId = "ZbqagJgjRYE";  // vedioID
         String imageUrl = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
         
         try {
@@ -20,12 +20,12 @@ public class ScratchVideoPicture {
             InputStream in = url.openStream();
             BufferedImage originalImage = ImageIO.read(in);
             
-            // èª¿æ?´å½±????????¢å?¨music player???å¤§å??
-            int newWidth = 320; // GUI??????  ??®æ??å¯¬åº¦
-            int newHeight = 180; // GUI??????  ??®æ??é«?åº?
+            // resize images
+            int newWidth = 320; // define the width of the image
+            int newHeight = 180; // define the height of the image
             BufferedImage resizedImage = resizeImage(originalImage, newWidth, newHeight);
 
-            // GUI?????? é¡¯ç¤º??????
+            // make a JFrame to display the image
             JFrame frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(640, 360);

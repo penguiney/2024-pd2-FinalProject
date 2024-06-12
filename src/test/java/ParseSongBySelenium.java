@@ -1,4 +1,4 @@
-5import java.io.IOException;
+import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -50,7 +50,7 @@ public class ParseSongBySelenium
 		}
 
 		element.click();
-		//?????????å¥?
+		//?????????ï¿½?
 		try {
 			TimeUnit.SECONDS.sleep(5);
 		} catch ( InterruptedException e) {
@@ -58,8 +58,8 @@ public class ParseSongBySelenium
 		}
 		System.out.println("Start moving...");
 
-		Path sourcePath = Paths.get(System.getProperty("user.home") + "/Downloads/" + "?????????å¥?" + ".mp3");
-    	Path targetPath = Paths.get("./music/" + "?????????å¥?" + ".mp3");
+		Path sourcePath = Paths.get(System.getProperty("user.home") + "/Downloads/" + "?????????ï¿½?" + ".mp3");
+    	Path targetPath = Paths.get("./music/" + "?????????ï¿½?" + ".mp3");
 
     	try {
      		Files.move(sourcePath, targetPath);

@@ -9,8 +9,8 @@ public class TestMoveFile
     public static void main(String[] args) {
 		System.out.println(System.getProperty("user.home"));
 
-		Path sourcePath = Paths.get(System.getProperty("user.home") + "/Downloads/" + "?????????å¥?" + ".mp3");
-    	Path targetPath = Paths.get(System.getProperty("user.home") + "/Desktop/" + "?????????å¥?" + ".mp3");
+		Path sourcePath = Paths.get(System.getProperty("user.home") + "/Downloads/" + "?????????ï¿½?" + ".mp3");
+    	Path targetPath = Paths.get(System.getProperty("user.home") + "/Desktop/" + "?????????ï¿½?" + ".mp3");
     	try {
      		Files.move(sourcePath, targetPath);
     	} catch (FileAlreadyExistsException ex) {
