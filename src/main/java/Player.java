@@ -8,6 +8,7 @@ public class Player {
     AdvancedPlayer player;
     
     Player(String filename) {
+        // read the MP3 file
         try {
             FileInputStream fis = new FileInputStream(filename);
             BufferedInputStream bis = new BufferedInputStream(fis);
@@ -19,10 +20,12 @@ public class Player {
     }
     
     public void play() throws JavaLayerException {
+        // start the player
         player.play();
     }
 
     public void close() {
+        // close the player
         player.close();
     }
 }
