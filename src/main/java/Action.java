@@ -3,6 +3,11 @@ import java.awt.event.*;;
 public class Action extends EnterScreen{
     private ListStruct struct;
     private Folder operateFolder = null;
+    private boolean isFolder = false;
+    private boolean isSong = false;  //know what type in this screen
+    private Song operateSong = null;
+    private Folder olderOperaFolder;
+    private boolean isMove = false;
 
     public Action(ListStruct struct){
         this.struct = struct;
@@ -14,14 +19,23 @@ public class Action extends EnterScreen{
             isInEnterScreen = true;
             exitOpenFolderScreen();
             appearEnterScreen();
+            isFolder = false;
             repaint();
         }else if (buttonAction.equals("go to EnterSong")){  //"OpenFolder" to "EnterSong"
             if(operateFolder == null){
                 appearWarnScreen("No Folder Selected");
             }else{
+                if(isMove){
+                    struct.moveSong(operateSong.name, olderOperaFolder.name, operateFolder.name);
+                    operateFolder = olderOperaFolder;
+                }
+                else 
+                    operateSong = null; //initial operateSong
                 exitOpenFolderScreen();
-                //add folder to do
-                appearEnterSong(operateFolder);
+                initialSongList(operateFolder);
+                appearEnterSong();
+                isFolder = false;
+                isSong = true;
                 repaint();
             }
         }else if(buttonAction.equals("createFolder")){   //on "OpenFolder" open "inputFolderName"
@@ -43,14 +57,14 @@ public class Action extends EnterScreen{
                 appearOpenFolderScreen();
                 repaint();
             }
-        }else if(buttonAction.equals("ensure warn to OpenFolder")){ //"WanrScreen" to "OpenFolder"
+        }else if(buttonAction.equals("ensure warn")){ //"WanrScreen" to "OpenFolder"
             exitWarnScreen();
-        }else if (buttonAction.equals("previous page")){ //On "OpenFolder"
+        }else if (buttonAction.equals("previous Folder page")){ //On "OpenFolder"
             exitOpenFolderScreen();
             appearFolderIndex -= 4;
             appearOpenFolderScreen();
             repaint();
-        }else if(buttonAction.equals("next page")){ //On "OpenFolder"
+        }else if(buttonAction.equals("next Folder page")){ //On "OpenFolder"
             exitOpenFolderScreen();
             appearFolderIndex += 4;
             appearOpenFolderScreen();
@@ -60,22 +74,70 @@ public class Action extends EnterScreen{
             setStruct(struct);
             struct.printRoot(); //know name of folder
             appearOpenFolderScreen();
+            isFolder = true;
+            isSong = false;
             repaint();
         }else if(buttonAction.equals("add Song")){ //"EnterSong" to "inputSongName"
             appearInputSongName();
-        }else{    //on "OpenFolder" when button of folder is clicked
-            for(int folderIndex = 0;folderIndex < folderList.size();folderIndex++){  //when folder button is clicked, operate action on this folder
-                folderList.get(folderIndex).setEnabled(true);
-                if(buttonAction.equals(folderList.get(folderIndex).getText())){
-                    folderList.get(folderIndex).setEnabled(false);
-                    operateFolder = Main.root.listContent.get(folderIndex);
+        }else if(buttonAction.equals("ensure Song")){ //On "EnterSong" add song
+            struct.addSong(operateFolder.name,false,getSongName(),getSongWebsite());
+            exitinputSongName();
+            exitEnterSong();
+            initialSongList(operateFolder);
+            appearEnterSong();
+        }else if(buttonAction.equals("previous Song page")){// On "EnterSong"
+            exitEnterSong();
+            appearSongIndex -= 5;
+            appearEnterSong();
+            repaint();
+        }else if(buttonAction.equals("next Song page")){  //On "EnterSong"
+            exitEnterSong();
+            appearSongIndex += 5;
+            appearEnterSong();
+            repaint();
+        }else if(buttonAction.equals("move song to other folder")){ //wiat need to write
+            if(operateSong == null) appearWarnScreen("No Song Selected");
+            else{
+                olderOperaFolder = operateFolder;
+                exitEnterSong();
+                isFolder = true;
+                isSong = false;
+                moveSongToOtherFolder();        //"EnterSong" to "OpenFolder"
+                repaint();
+                isMove = true;
+            }
+        }else if(buttonAction.equals("remove song")){
+            if(operateSong == null) appearWarnScreen("No Song Selected");
+            else{
+                struct.deleteSong(operateFolder.name, operateSong.name);
+                exitEnterSong();
+                initialSongList(operateFolder);
+                appearEnterSong();
+                repaint();
+            }
+        } else{    //on "OpenFolder" when button of folder is clicked
+            if(isFolder){
+                for(int folderIndex = 0;folderIndex < folderList.size();folderIndex++){  //when folder button is clicked, operate action on this folder
+                    folderList.get(folderIndex).setEnabled(true);
+                    if(buttonAction.equals(folderList.get(folderIndex).getText())){
+                        folderList.get(folderIndex).setEnabled(false);
+                        operateFolder = Main.root.listContent.get(folderIndex);
+                    }
+                }
+            }else if(isSong){
+                for(int songIndex = 0;songIndex < songButtonList.size();songIndex++){  //when song button is clicked, operate action on this folder
+                    songButtonList.get(songIndex).setEnabled(true);
+                    if(buttonAction.equals(songButtonList.get(songIndex).getText())){
+                        songButtonList.get(songIndex).setEnabled(false);
+                        operateSong = operateFolder.content.get(songIndex);                
+                    }
                 }
             }
         }
 
     }
 
-    public void mouseClicked(MouseEvent mouseEvent) {
+    public void mouseClicked(MouseEvent mouseEvent) { //"EnterScreen" to "OpenFolder"
         OpenFolder openFolder = new OpenFolder();
         if(isInEnterScreen){
             isInEnterScreen = false;
@@ -84,6 +146,7 @@ public class Action extends EnterScreen{
             struct.printRoot(); //know name of folder
             initialFolderList();
             appearOpenFolderScreen();
+            isFolder = true;
             repaint();                      //refresh screen
         }
     }

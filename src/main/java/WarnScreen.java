@@ -28,12 +28,10 @@ public class WarnScreen extends InputSongName implements ActionListener{
     public void appearWarnScreen(String condition){
         warnScreen.remove(warnWord);
         warnWord = new JLabel(condition);
-        if(condition.equals("No Folder Selected")){
-            warnWord.setFont(new Font("Verdana",Font.PLAIN,25));
-            warnWord.setBounds(40, 30, 350, 100);
-            warnScreen.add(warnWord);
-            ensureWarn.setActionCommand("ensure warn to OpenFolder");
-        }
+        warnWord.setFont(new Font("Verdana",Font.PLAIN,25));
+        warnWord.setBounds(40, 30, 350, 100);
+        warnScreen.add(warnWord);
+        ensureWarn.setActionCommand("ensure warn");
         warnScreen.setVisible(true);
     }
 

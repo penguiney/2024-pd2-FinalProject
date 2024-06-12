@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         DataList dataList = new DataList();
         dataList.loadList();
-        ListStruct struct = new ListStruct();
+        ListStruct struct = new ListStruct(); //operate folder and song function
 
         //TestListStruct test = new TestListStruct();
         

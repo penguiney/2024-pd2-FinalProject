@@ -1,5 +1,6 @@
 
 
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,12 +15,12 @@ public class InputSongName extends JFrame implements ActionListener{
     private JTextField outputName = new JTextField(16);
     private JTextField outputWebsite = new JTextField(16);
     private JButton ensureName;
-    private JFrame createName = new JFrame("Create Song");
+    private JFrame createSong = new JFrame("Create Song");
 
     public void appearInputSongName(){
-        createName.setLayout(null);
-        createName.setSize(350,250);
-        createName.setVisible(true);
+        createSong.setLayout(null);
+        createSong.setSize(350,250);
+        createSong.setVisible(true);
 
         ensureName = new JButton("ensure");
         ensureName.setBounds(100,150,100,50);
@@ -32,11 +33,11 @@ public class InputSongName extends JFrame implements ActionListener{
         Website.setBounds(0, 100, 120, 25);
         outputWebsite.setBounds(120, 100,180 , 25);
 
-        createName.add(Name);
-        createName.add(outputName);
-        createName.add(ensureName);
-        createName.add(outputWebsite);
-        createName.add(Website);
+        createSong.add(Name);
+        createSong.add(outputName);
+        createSong.add(ensureName);
+        createSong.add(outputWebsite);
+        createSong.add(Website);
 
     }
 
@@ -49,7 +50,7 @@ public class InputSongName extends JFrame implements ActionListener{
     }
 
     public void exitinputSongName(){     
-        createName.setVisible(false);
+        createSong.setVisible(false);
     }
 
     public void actionPerformed(ActionEvent e){} //override
