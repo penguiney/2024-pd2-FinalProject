@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 public class EnterSong  extends inputFolderName implements ActionListener{
     private JLabel folderNameLabel;
     private JButton addSong,removeSong,moveSong,lastOpenFolder,previousSongPage,nextSongPage,playSong;
-    private Folder folder;
+    private Folder folder = null;
     private InputSongName inputFolderName = new InputSongName(); 
     public List<JButton> songButtonList = new ArrayList<>();
     private int songPositiveInder = 0;  //index of position of song ordered 
@@ -52,8 +52,8 @@ public class EnterSong  extends inputFolderName implements ActionListener{
 
         playSong = new JButton("Play");
         playSong.setBounds(110, 360, 130, 50);
-        //playSong.setActionCommand("next Song page");
-        //playSong.addActionListener(this);
+        playSong.setActionCommand("play song");
+        playSong.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e){}  //override
@@ -118,5 +118,17 @@ public class EnterSong  extends inputFolderName implements ActionListener{
         for(Song song : folder.content){
             storeSongNameButton(song);
         }
+    }
+
+    public Song findNextOrPreviousSong(String songName,int order){
+        for(int i = 0;i < folder.content.size();i++){
+            if(songName.equals(folder.content.get(i).name)){
+                i += order;
+                if(i == -1) i += folder.content.size();
+                else if(i == folder.content.size()) i = 0;
+                return folder.content.get(i);
+            }
+        }
+        return folder.content.get(order);
     }
 }

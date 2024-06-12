@@ -71,7 +71,7 @@ public class ListStruct {
     public void moveSong(String name, String oldFolderName, String newFolderName) {
         Folder oldFolder = searchFolderByName(oldFolderName);
         Song theSong = searchSongByName(oldFolder, name);
-
+        System.out.println(theSong.isMP4);
         addSong(newFolderName, theSong.isMP4, theSong.name, theSong.website);
         deleteSong(oldFolderName, name);
         System.out.println("MoveSong Successfully");
