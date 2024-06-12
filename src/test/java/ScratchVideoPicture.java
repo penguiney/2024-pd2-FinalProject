@@ -1,8 +1,3 @@
-<<<<<<< HEAD:src/test/java/finalproject/ScratchVideoPicture.java
-
-
-=======
->>>>>>> d8ce52da585265c15cacfd9574043a6601ec52d3:src/test/java/ScratchVideoPicture.java
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,7 +12,7 @@ import java.net.URL;
 public class ScratchVideoPicture {
 
     public static void main(String[] args) {
-        String videoId = "ZbqagJgjRYE";  // ??¿æ????³è?????å½±ç??ID
+        String videoId = "ZbqagJgjRYE";  // ??ï¿½ï¿½????ï¿½ï¿½?????å½±ï¿½??ID
         String imageUrl = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
         
         try {
@@ -25,9 +20,9 @@ public class ScratchVideoPicture {
             InputStream in = url.openStream();
             BufferedImage originalImage = ImageIO.read(in);
             
-            // èª¿æ?´å½±????????¢å?¨music player???å¤§å??
-            int newWidth = 320; // GUI??????  ??®æ??å¯¬åº¦
-            int newHeight = 180; // GUI??????  ??®æ??é«?åº?
+            // èª¿ï¿½?ï¿½å½±????????ï¿½ï¿½?ï¿½music player???å¤§ï¿½??
+            int newWidth = 320; // GUI??????  ??ï¿½ï¿½??å¯¬åº¦
+            int newHeight = 180; // GUI??????  ??ï¿½ï¿½??ï¿½?ï¿½?
             BufferedImage resizedImage = resizeImage(originalImage, newWidth, newHeight);
 
             // GUI?????? é¡¯ç¤º??????
