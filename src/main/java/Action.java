@@ -8,6 +8,7 @@ public class Action extends EnterScreen{
     private Song operateSong = null;
     private Folder olderOperaFolder;
     private boolean isMove = false;
+    private boolean isStartSong = false;
 
     public Action(ListStruct struct){
         this.struct = struct;
@@ -31,6 +32,7 @@ public class Action extends EnterScreen{
                 }
                 else 
                     operateSong = null; //initial operateSong
+                isMove= false;
                 exitOpenFolderScreen();
                 initialSongList(operateFolder);
                 appearEnterSong();
@@ -106,7 +108,7 @@ public class Action extends EnterScreen{
                 repaint();
                 isMove = true;
             }
-        }else if(buttonAction.equals("remove song")){
+        }else if(buttonAction.equals("remove song")){  //On "EnterSong"
             if(operateSong == null) appearWarnScreen("No Song Selected");
             else{
                 struct.deleteSong(operateFolder.name, operateSong.name);
@@ -115,6 +117,24 @@ public class Action extends EnterScreen{
                 appearEnterSong();
                 repaint();
             }
+        }else if(buttonAction.equals("play song")){  //"EnterSong" to "SongMainScreen"
+            if(operateSong == null) appearWarnScreen("No Song Selected");
+            else{
+                exitEnterSong();
+                appearStartSongMainScreen(operateSong);
+                repaint();
+            }
+
+        }else if(buttonAction.equals("last to EnterSong")){ //"SongMainScreen" to "EnterSong"
+            exitSongMainScreen();
+            appearEnterSong();
+            repaint();
+        }else if(buttonAction.equals("Start and Stop")){
+            isStartSong = !isStartSong;
+            exitSongMainScreen();
+            if(isStartSong) appearStopSongMainScreen(operateSong);
+            else appearStartSongMainScreen(operateSong);
+            repaint();
         } else{    //on "OpenFolder" when button of folder is clicked
             if(isFolder){
                 for(int folderIndex = 0;folderIndex < folderList.size();folderIndex++){  //when folder button is clicked, operate action on this folder

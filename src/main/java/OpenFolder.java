@@ -11,7 +11,7 @@ import javax.swing.*;
 //import org.openqa.selenium.Dimension;
 
 public class OpenFolder extends EnterSong implements ActionListener{
-    private JButton lastPage,createFolder,EnterFolder,removerFolder,previousFolderPage,nextFolderPage,moveSong;
+    private JButton lastPage,createFolder,EnterFolder,removeFolder,previousFolderPage,nextFolderPage,moveSong;
     ImageIcon folderImageJpg = new ImageIcon("folder.png");
     private JLabel folderImage = new JLabel(folderImageJpg);
     public List<JButton> folderList = new ArrayList<>();
@@ -36,10 +36,10 @@ public class OpenFolder extends EnterSong implements ActionListener{
         EnterFolder.setActionCommand("go to EnterSong");
         EnterFolder.addActionListener(this);
 
-        removerFolder = new JButton("Remove");
-        removerFolder.setBounds(250, 310, 100, 50);
-        removerFolder.setActionCommand("remove Folder");
-        removerFolder.addActionListener(this);
+        removeFolder = new JButton("Remove");
+        removeFolder.setBounds(250, 310, 100, 50);
+        removeFolder.setActionCommand("remove Folder");
+        removeFolder.addActionListener(this);
 
         previousFolderPage = new JButton("Previous");
         previousFolderPage.setBounds(0, 360, 175, 50);
@@ -73,7 +73,6 @@ public class OpenFolder extends EnterSong implements ActionListener{
     } 
 
     public void moveSongToOtherFolder(){
-        add(lastPage);
         add(moveSong);
         for(int i = 0;i < 4;i++){
             if(i + appearFolderIndex >= folderList.size()) break;
@@ -96,7 +95,7 @@ public class OpenFolder extends EnterSong implements ActionListener{
         add(createFolder);
         add(EnterFolder);
         add(folderImage);
-        add(removerFolder);
+        add(removeFolder);
         for(int i = 0;i < 4;i++){
             if(i + appearFolderIndex >= folderList.size()) break;
             add(folderList.get(i+appearFolderIndex));
@@ -117,7 +116,7 @@ public class OpenFolder extends EnterSong implements ActionListener{
         remove(createFolder);
         remove(EnterFolder);
         remove(folderImage);
-        remove(removerFolder);
+        remove(removeFolder);
         for(int i = 0;i < 4;i++){
             if(i + appearFolderIndex >= folderList.size()) break;
             remove(folderList.get(i+appearFolderIndex));
