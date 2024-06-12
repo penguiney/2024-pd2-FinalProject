@@ -18,6 +18,13 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
+  <repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -38,6 +45,26 @@
       <groupId>com.googlecode.soundlibs</groupId>
       <artifactId>mp3spi</artifactId>
       <version>1.9.5.4</version>
+    </dependency>
+
+
+    <!-- JLayer dependency -->
+    <dependency>
+	    <groupId>com.github.umjammer</groupId>
+	    <artifactId>jlayer</artifactId>
+	    <version>1.0.3</version>
+	</dependency>
+    
+    <!-- JavaFX dependency -->
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>23-ea+20</version>
+    </dependency>
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>23-ea+20</version>
     </dependency>
 
   </dependencies>

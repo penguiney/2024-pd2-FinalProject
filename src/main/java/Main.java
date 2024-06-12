@@ -13,7 +13,7 @@ public class Main {
         //TestListStruct test = new TestListStruct();
         
         //struct.addList("TestList1");
-        //struct.addSong("TestList1", false, "jiji", "o");//??ªå·±??? String folderName, boolean isMP4, String name, String website
+        //struct.addSong("TestList1", false, "jiji", "o");// String folderName, boolean isMP4, String name, String website
 
         //test.runtestList();
         Action startMusicPlayer = new Action(struct);
