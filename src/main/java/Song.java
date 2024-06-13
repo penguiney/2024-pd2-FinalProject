@@ -1,6 +1,7 @@
 import java.io.Serializable;
 
 public class Song implements Serializable {
+    private static final long serialVersionUID = 1L;
     boolean isMP4;
     String name;
     String website;
