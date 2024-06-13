@@ -30,16 +30,17 @@ public class ListStruct {
         return false;
     }
 
-    public void addList(String name) {
+    public boolean addList(String name) {
         Folder folder = new Folder(name);
         if(searchFolder(name)) {
             System.out.println("Error: ListStruct/addList - List already exist"); 
-            return; 
+            return false; 
         }
         Main.root.listContent.add(folder);
         System.out.println("AddList Successfully");
         System.out.println(name);
         datalist.saveList();
+        return true;
     }
 
     public void addSong(String folderName, boolean isMP4, String name, String website) { //listName = FoderName
