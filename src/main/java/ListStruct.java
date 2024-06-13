@@ -43,17 +43,18 @@ public class ListStruct {
         return true;
     }
 
-    public void addSong(String folderName, boolean isMP4, String name, String website) { //listName = FoderName
+    public boolean addSong(String folderName, boolean isMP4, String name, String website) { //listName = FoderName
         Song song = new Song(isMP4, name, website);
         
         Folder folder = searchFolderByName(folderName);
         if(searchSong(folder, name)) {
             System.out.println("Error: ListStruct/addSong - Song already exist"); 
-            return; 
+            return false; 
         }
         folder.content.add(song);
         System.out.println("AddSong Successfully");
         datalist.saveList();
+        return true;
     }
 
     public void deleteList(String name) { //list = forder
@@ -73,8 +74,8 @@ public class ListStruct {
         Folder oldFolder = searchFolderByName(oldFolderName);
         Song theSong = searchSongByName(oldFolder, name);
         System.out.println(theSong.isMP4);
-        addSong(newFolderName, theSong.isMP4, theSong.name, theSong.website);
         deleteSong(oldFolderName, name);
+        addSong(newFolderName, theSong.isMP4, theSong.name, theSong.website);
         System.out.println("MoveSong Successfully");
         datalist.saveList();
     }

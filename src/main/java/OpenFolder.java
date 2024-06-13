@@ -78,6 +78,7 @@ public class OpenFolder extends EnterSong implements ActionListener{
             if(i + appearFolderIndex >= folderList.size()) break;
             add(folderList.get(i+appearFolderIndex));
             add(folderImageList.get(i));
+            System.out.println(i+" add successful");
         }
         add(previousFolderPage);
         add(nextFolderPage);
