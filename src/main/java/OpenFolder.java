@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class OpenFolder extends EnterSong implements ActionListener{
     private JButton lastPage,createFolder,EnterFolder,removeFolder,previousFolderPage,nextFolderPage,moveSong;
-    ImageIcon folderImageJpg = new ImageIcon("folder.png");
+    ImageIcon folderImageJpg = new ImageIcon("./picture/folder.png");
     private JLabel folderImage = new JLabel(folderImageJpg);
     public List<JButton> folderList = new ArrayList<>();
     private List<JLabel> folderImageList = new ArrayList<>();
