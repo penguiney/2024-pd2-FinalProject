@@ -6,9 +6,11 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 
 public class Player {
     AdvancedPlayer player;
+    boolean isPlaying = false;
     
-    public Player(String filename) {
+    public Player(Song song) {
         // read the MP3 file
+        String filename = "./music/" + song.name + ".mp3";
         try {
             FileInputStream fis = new FileInputStream(filename);
             BufferedInputStream bis = new BufferedInputStream(fis);
@@ -21,11 +23,13 @@ public class Player {
     
     public void play() throws JavaLayerException {
         // start the player
+        isPlaying = true;
         player.play();
     }
 
     public void stop() {
         // stop the player
+        isPlaying = false;
         player.stop();
     }
 
