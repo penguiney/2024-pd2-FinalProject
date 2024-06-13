@@ -86,9 +86,9 @@ public class Action extends EnterScreen{
             repaint();
         }else if(buttonAction.equals("add Song")){ //"EnterSong" to "inputSongName"
             appearInputSongName();
-        }else if(buttonAction.equals("ensure Song")){ //On "EnterSong" add song  歌曲爬蟲
-            //struct.addSong(operateFolder.name,false,getSongName(),getSongWebsite());
-            parseSong.goParse(getSongWebsite(), operateFolder.name);
+        }else if(buttonAction.equals("ensure Song")){ //On "EnterSong" add song
+            if(!struct.addSong(operateFolder.name,false,getSongName(),getSongWebsite()))
+                appearWarnScreen("The Song Has Existed");
             exitinputSongName();
             exitEnterSong();
             initialSongList(operateFolder);
@@ -122,6 +122,7 @@ public class Action extends EnterScreen{
                 initialSongList(operateFolder);
                 appearEnterSong();
                 repaint();
+                operateSong = null;
             }
         }else if(buttonAction.equals("play song")){  //"EnterSong" to "SongMainScreen"
             if(operateSong == null) appearWarnScreen("No Song Selected");

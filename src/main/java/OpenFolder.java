@@ -56,8 +56,6 @@ public class OpenFolder extends EnterSong implements ActionListener{
         moveSong.setActionCommand("go to EnterSong");
         moveSong.addActionListener(this);
 
-        folderImage.setBounds(100, 0, 150, 100);
-
         for(int i = 0; i < 4;i++){  //show 4 "folderImage" in screen and order thsm
             folderImage = new JLabel(folderImageJpg);
             if(i == 0) folderImage.setBounds(0, 60, 150, 100);
@@ -78,10 +76,10 @@ public class OpenFolder extends EnterSong implements ActionListener{
             if(i + appearFolderIndex >= folderList.size()) break;
             add(folderList.get(i+appearFolderIndex));
             add(folderImageList.get(i));
+            System.out.println(i+" add successful");
         }
         add(previousFolderPage);
         add(nextFolderPage);
-        add(folderImage);
 
         //ensure num of "folderList".size() can go to "nextFolderPage" or "previousFolderPage"
         previousFolderPage.setEnabled(true);
@@ -94,12 +92,12 @@ public class OpenFolder extends EnterSong implements ActionListener{
         add(lastPage);
         add(createFolder);
         add(EnterFolder);
-        add(folderImage);
         add(removeFolder);
         for(int i = 0;i < 4;i++){
             if(i + appearFolderIndex >= folderList.size()) break;
+            System.out.println(i+" folder");
             add(folderList.get(i+appearFolderIndex));
-            add(folderImageList.get(i));
+            //add(folderImageList.get(i));
         }
         add(previousFolderPage);
         add(nextFolderPage);
@@ -115,7 +113,6 @@ public class OpenFolder extends EnterSong implements ActionListener{
         remove(lastPage);
         remove(createFolder);
         remove(EnterFolder);
-        remove(folderImage);
         remove(removeFolder);
         for(int i = 0;i < 4;i++){
             if(i + appearFolderIndex >= folderList.size()) break;
@@ -124,7 +121,6 @@ public class OpenFolder extends EnterSong implements ActionListener{
         }
         remove(previousFolderPage);
         remove(nextFolderPage);
-        remove(folderImage);
         remove(moveSong);
     } 
 
@@ -136,7 +132,6 @@ public class OpenFolder extends EnterSong implements ActionListener{
     public void storeFolderNameButton(String name){  //when 'initialFolderList' operate, order all folder
         JButton folderNameButton = new JButton(name);
 
-        folderImage = new JLabel(folderImageJpg);
         if(folderList.size() % 4 == 0)folderNameButton.setBounds(0, 160, 150, 20);
         else if(folderList.size() % 4 == 1) folderNameButton.setBounds(200, 160, 150, 20);
         else if(folderList.size() % 4 == 2) folderNameButton.setBounds(0, 280, 150, 20);
