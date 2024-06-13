@@ -24,6 +24,11 @@ public class Player {
         player.play();
     }
 
+    public void stop() {
+        // stop the player
+        player.stop();
+    }
+
     public void close() {
         // close the player
         player.close();
