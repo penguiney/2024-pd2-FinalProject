@@ -8,7 +8,7 @@ public class SongMainScreen extends WarnScreen {
     private JLabel SongNameLabel;
 
     public SongMainScreen(){
-        slider = new JSlider();
+        slider = new JSlider(0,100,0);
         slider.setBounds(0, 310,350,50);
 
         backToEnterSong = new JButton("back");

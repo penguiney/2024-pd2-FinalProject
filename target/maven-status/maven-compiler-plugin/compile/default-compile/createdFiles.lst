@@ -1,6 +1,7 @@
 Root.class
 DataList.class
 OpenFolder.class
+Player.class
 SongMainScreen.class
 EnterScreen.class
 ParseSong.class
