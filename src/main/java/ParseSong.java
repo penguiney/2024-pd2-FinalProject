@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -79,17 +80,23 @@ public class ParseSong {
         ChromeOptions co = new ChromeOptions();
 		co.addArguments("-headless");
 		System.setProperty("webdriver.chrome.driver", "C:/Program Files/Google/Chrome/Application/chromedriver.exe");
-		WebDriver driver = new ChromeDriver(co);//website invisible
+		WebDriver driver = new ChromeDriver();//website invisible
 
         driver.get(url);
         String content = driver.findElement(By.xpath("/html/body/pre")).getText();
         //dividing
         content = content.substring(content.indexOf("\"title\": "));
         content = content.substring(10);
-        title = content.substring(0, content.indexOf('\"'));
+        title = content.substring(0, content.indexOf("\"description\"")-11);
         System.out.println(title);
         driver.close();
         System.out.println("Getting title successfully");
+
+        String regEx = "[^\\u4e00-\\u9fa5A-Za-z0-9.\\-~=:, ]+";
+        title = Pattern.compile(regEx).matcher(title).replaceAll("").trim();
+        title = Pattern.compile("[|]+").matcher(title).replaceAll("").trim();
+        title = Pattern.compile(":").matcher(title).replaceAll("_").trim();
+        System.out.println(title);
         return title;
     }
    
@@ -99,7 +106,7 @@ public class ParseSong {
         ChromeOptions co = new ChromeOptions();
 		co.addArguments("-headless");
         System.setProperty("webdriver.chrome.driver", "C:/Program Files/Google/Chrome/Application/chromedriver.exe");
-		WebDriver driver = new ChromeDriver(co);//website invisible
+		WebDriver driver = new ChromeDriver();//website invisible
 
 		//---parse file
 		driver.get("https://mp3-juices.nu/ajdO/");

@@ -150,6 +150,7 @@ public class OpenFolder extends EnterSong implements ActionListener{
     public void initialFolderList(){  //when "EnterScreen" to "OpenFolder", we need to load Folders and show them
         folderList = new ArrayList<>();
         for(Folder f : root){
+            System.out.println(f.name+" add button");
             storeFolderNameButton(f.name);
         }
     }

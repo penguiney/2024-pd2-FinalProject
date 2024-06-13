@@ -43,10 +43,10 @@ public class Action extends EnterScreen{
         }else if(buttonAction.equals("createFolder")){   //on "OpenFolder" open "inputFolderName"
             appearInputFolderName();
         }else if(buttonAction.equals("ensure Folder")){  //"inputFolderName" to "OpenFolder"
-            struct.addList(getFolderName());
+            if(struct.addList(getFolderName())) storeFolderNameButton(getFolderName());
+            else appearWarnScreen("The Folder Has Existed");
             exitinputFolderName();
             struct.printRoot(); //know name of folder
-            storeFolderNameButton(getFolderName());
             appearOpenFolderScreen();
             repaint();
         }else if(buttonAction.equals("remove Folder")){ //on "OpenFolder"
@@ -58,6 +58,7 @@ public class Action extends EnterScreen{
                 initialFolderList();
                 appearOpenFolderScreen();
                 repaint();
+                operateFolder = null;
             }
         }else if(buttonAction.equals("ensure warn")){ //"WanrScreen" to "OpenFolder"
             exitWarnScreen();

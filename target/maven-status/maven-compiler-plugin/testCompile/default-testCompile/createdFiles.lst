@@ -7,3 +7,5 @@ testWholeParse.class
 TestApi.class
 TestListStruct.class
 TestMoveFile.class
+testControlBar$1.class
+testControlBar.class
