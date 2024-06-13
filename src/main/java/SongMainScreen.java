@@ -38,7 +38,7 @@ public class SongMainScreen extends WarnScreen {
     }
 
     public void appearStartSongMainScreen(Song song){
-        SongNameLabel = new JLabel(song.name);
+        SongNameLabel = new JLabel(song.shortName);
         SongNameLabel.setBounds(70, 0, 350, 50);
         SongNameLabel.setFont(new Font("Verdava", Font.PLAIN, 30));
 
@@ -51,7 +51,7 @@ public class SongMainScreen extends WarnScreen {
     }
 
     public void appearStopSongMainScreen(Song song){
-        SongNameLabel = new JLabel(song.name);
+        SongNameLabel = new JLabel(song.shortName);
         SongNameLabel.setBounds(70, 0, 350, 50);
         SongNameLabel.setFont(new Font("Verdava", Font.PLAIN, 30));
 
