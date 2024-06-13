@@ -7,7 +7,7 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 public class Player {
     AdvancedPlayer player;
     
-    Player(String filename) {
+    public Player(String filename) {
         // read the MP3 file
         try {
             FileInputStream fis = new FileInputStream(filename);
