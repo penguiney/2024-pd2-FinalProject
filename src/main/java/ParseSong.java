@@ -101,7 +101,7 @@ public class ParseSong {
         driver.close();
         System.out.println("Getting title successfully");
 
-        String regEx = "[^\\u4e00-\\u9fa5A-Za-z0-9.\\-~=:, ]+";
+        String regEx = "[^\\u4e00-\\u9fa5A-Za-z0-9.\\-~=:,() ]+";
         title = Pattern.compile(regEx).matcher(title).replaceAll("").trim();
         title = Pattern.compile("[|]+").matcher(title).replaceAll("").trim();
         title = Pattern.compile(":").matcher(title).replaceAll("_").trim();
@@ -113,7 +113,7 @@ public class ParseSong {
         System.out.println("Start getting Mp3...");
 
         ChromeOptions co = new ChromeOptions();
-		co.addArguments("-headless");
+		co.addArguments("--headless=new");
         System.setProperty("webdriver.chrome.driver", "C:/Program Files/Google/Chrome/Application/chromedriver.exe");
 		WebDriver driver = new ChromeDriver(co);//website invisible
 
