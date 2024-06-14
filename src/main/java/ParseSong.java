@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,16 +27,24 @@ public class ParseSong {
     public static int videoHeight = 180;
 
     public void goParse(String website, String folder) {
+        ListStruct struct = new ListStruct();
         String api_key = "AIzaSyAUlDMhU-2Oao7I23dk68R8ilYP6_L0LQc";
         String id = getID(website);
         String name = "";
 
-
+        System.out.println("parsing 1/5...");
         name = getNameByAPI(id, api_key);
+        File file = new File("./music/" + name + ".mp3");
+        if(file.exists()) {
+            System.out.println("Warning: ParseSong/goParse - file already exist");
+            struct.addSong(folder, false, name, website);
+            return;
+        }
+        System.out.println("parsing 2/5...");
         getMp3bySelenium(website, name);
+        System.out.println("parsing 5/5...");
         getVideoPicturebyWebsite(name, id);
-
-        ListStruct struct = new ListStruct();
+        System.out.println("add song...");
         struct.addSong(folder, false, name, website);
     }
 
@@ -80,7 +89,7 @@ public class ParseSong {
         ChromeOptions co = new ChromeOptions();
 		co.addArguments("-headless");
 		System.setProperty("webdriver.chrome.driver", "C:/Program Files/Google/Chrome/Application/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();//website invisible
+		WebDriver driver = new ChromeDriver(co);//website invisible
 
         driver.get(url);
         String content = driver.findElement(By.xpath("/html/body/pre")).getText();
@@ -106,7 +115,7 @@ public class ParseSong {
         ChromeOptions co = new ChromeOptions();
 		co.addArguments("-headless");
         System.setProperty("webdriver.chrome.driver", "C:/Program Files/Google/Chrome/Application/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();//website invisible
+		WebDriver driver = new ChromeDriver(co);//website invisible
 
 		//---parse file
 		driver.get("https://mp3-juices.nu/ajdO/");
@@ -125,20 +134,34 @@ public class ParseSong {
 		}
 		element = driver.findElement(By.className("1"));
 		element.click();
-		try {
-			TimeUnit.SECONDS.sleep(5);
+        try {
+            boolean ready = false;
+            while(true) {
+                try {
+                    element = driver.findElement(By.className("completed"));
+                } catch (NoSuchElementException n) {ready = false;}
+                if (ready) break;
+                ready = true;
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("..");
+            }     
 		} catch ( InterruptedException e) {
 			e.printStackTrace();
 		}
+        System.out.println("parsing 3/5...");
 		element.click();
 		//---move file
         String oldPlace = System.getProperty("user.home") + "/Downloads/" + title + ".mp3";
         try {
             File file = new File(oldPlace);
-            while(!file.exists()) TimeUnit.SECONDS.sleep(1);
+            while(!file.exists())  {
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("...");
+            }
 		} catch ( InterruptedException e) {
 			e.printStackTrace();
 		}
+        System.out.println("parsing 4/5...");
 		Path oldPath = Paths.get(oldPlace);
     	Path newPath = Paths.get("./music/" + title + ".mp3");
     	try {
