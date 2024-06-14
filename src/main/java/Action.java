@@ -128,16 +128,17 @@ public class Action extends EnterScreen{
         }else if(buttonAction.equals("play song")){  //"EnterSong" to "SongMainScreen"
             if(operateSong == null) appearWarnScreen("No Song Selected");
             else{
-                SwingUtilities.invokeLater(() -> {
-                    SongMainScreen songPlayer = new SongMainScreen();
-                    songPlayer.setVisible(true);
-                });
                 exitEnterSong();
                 appearSongMainScreen(operateSong);
                 //player = new Player(operateSong);
                 repaint();
             }
 
+        }else if(buttonAction.equals("play Song")){
+            exitSongMainScreen();
+            appearSongMainScreen(operateSong);
+            repaint();
+            MP3Player.startPlayer(operateSong);
         }else if(buttonAction.equals("last to EnterSong")){ //"SongMainScreen" to "EnterSong"
             exitSongMainScreen();
             appearEnterSong();

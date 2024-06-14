@@ -14,11 +14,11 @@ public class MP3Player extends JFrame {
     private boolean isPlaying = false;
     private Thread playerThread;
     private AdvancedPlayer player;
-    private String filePath = "./music/testMP3.mp3";  // 替换为你的 MP3 文件路径
+    private String filePath = "";  // 替换为你的 MP3 文件路径
 
-    public MP3Player(String filepath) {
-        this.filePath = filepath;
-        setTitle("MP3 Player");
+    public MP3Player(Song song) {
+        this.filePath = "./music/" + song.trueName + ".mp3";
+        setTitle(song.name);
         setSize(300, 100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -81,9 +81,9 @@ public class MP3Player extends JFrame {
         }
     }
 
-    public static void startPlayer(String filepath) {
+    public static void startPlayer(Song song) {
         SwingUtilities.invokeLater(() -> {
-            MP3Player player = new MP3Player(filepath);
+            MP3Player player = new MP3Player(song);
             player.setVisible(true);
         });
     }

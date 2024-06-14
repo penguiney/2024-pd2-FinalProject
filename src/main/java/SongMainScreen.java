@@ -1,23 +1,11 @@
 import java.awt.Frame;
-import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.awt.Font;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.advanced.AdvancedPlayer;
-
-public class SongMainScreen extends WarnScreen{
+public class SongMainScreen extends WarnScreen {
     private JSlider slider;
-    private JButton backToEnterSong,startStopPlay,previousSong,nextSong;
+    private JButton backToEnterSong,startPlay,previousSong,nextSong;
     private JLabel SongNameLabel;
-    private boolean isPlaying = false;
-    private Player player;
-    private Thread playerThread;
-    private Song playSong;
 
     public SongMainScreen(){
         slider = new JSlider(0,100,0);
@@ -33,27 +21,15 @@ public class SongMainScreen extends WarnScreen{
         previousSong.setActionCommand("previous song");
         previousSong.addActionListener(this);
 
-        startStopPlay = new JButton("start");
-        startStopPlay.setBounds(100, 360, 150, 50);
-        startStopPlay.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!isPlaying) {
-                    playMusic();
-                } else {
-                    pauseMusic();            
-                }
-            }
-        });
+        startPlay = new JButton("play");
+        startPlay.setBounds(100, 360, 150, 50);
+        startPlay.setActionCommand("play Song");
+        startPlay.addActionListener(this);
 
         nextSong = new JButton("next");
         nextSong.setBounds(250, 360, 100, 50);
         nextSong.setActionCommand("next song");
         nextSong.addActionListener(this);
-    }
-
-    public void setSongInSongMainScreen(Song song){
-        playSong = song;
     }
 
     public void appearSongMainScreen(Song song){
@@ -64,7 +40,7 @@ public class SongMainScreen extends WarnScreen{
         add(slider);
         add(backToEnterSong);
         add(SongNameLabel);
-        add(startStopPlay);
+        add(startPlay);
         add(previousSong);
         add(nextSong);
     }
@@ -73,46 +49,9 @@ public class SongMainScreen extends WarnScreen{
         remove(slider);
         remove(backToEnterSong);
         remove(SongNameLabel);
-        remove(startStopPlay);
+        remove(startPlay);
         remove(previousSong);
         remove(nextSong);
-    }
-
-    private void playMusic() {
-        try {
-            player = new Player(playSong);
-
-            playerThread = new Thread(() -> {
-                try {
-                    isPlaying = true;
-                    /*startStopPlay.setEnabled(false);
-                    pauseButton.setEnabled(true);*/
-                    startStopPlay.setText("stop");
-                    player.play();
-                } catch (JavaLayerException e) {
-                    e.printStackTrace();
-                } finally {
-                    isPlaying = false;
-                    /*startStopPlay.setEnabled(true);
-                    pauseButton.setEnabled(false);*/
-                    startStopPlay.setText("start");
-                }
-            });
-            playerThread.start();
-        } catch (FileNotFoundException | JavaLayerException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void pauseMusic() {
-        if (player != null && playerThread != null && isPlaying) {
-            player.close();
-            playerThread.interrupt();
-            isPlaying = false;
-            /*startStopPlay.setEnabled(true);
-            pauseButton.setEnabled(false);*/
-            startStopPlay.setText("start");
-        }
     }
     
 }

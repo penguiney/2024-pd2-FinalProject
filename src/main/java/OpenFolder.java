@@ -3,6 +3,7 @@ import java.util.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.MediaTracker;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,6 +22,9 @@ public class OpenFolder extends EnterSong implements ActionListener{
     public int appearFolderIndex = 0;
 
     public OpenFolder(){ //center area height:50~310 weight:0~350
+        System.out.print("image: ");
+        System.out.println(folderImageJpg.getImageLoadStatus() == MediaTracker.COMPLETE);
+
         lastPage = new JButton("Back");
         lastPage.setBounds(0, 0, 80, 50);
         lastPage.setActionCommand("last page to EnterScreen");
@@ -97,7 +101,7 @@ public class OpenFolder extends EnterSong implements ActionListener{
             if(i + appearFolderIndex >= folderList.size()) break;
             System.out.println(i+" folder");
             add(folderList.get(i+appearFolderIndex));
-            //add(folderImageList.get(i));
+            add(folderImageList.get(i));
         }
         add(previousFolderPage);
         add(nextFolderPage);

@@ -14,7 +14,7 @@ public class MultiThreadedPlayer extends JFrame {
     private boolean isPlaying = false;
     private Thread playerThread;
     private AdvancedPlayer player;
-    private String filePath = "./music/testMP3.mp3";  // 替换为你的 MP3 文件路径
+    private String filePath = "";
 
     public MultiThreadedPlayer() {
         setTitle("MP3 Player");
