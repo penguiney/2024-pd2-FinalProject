@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -125,8 +126,16 @@ public class ParseSong {
 		}
 		element = driver.findElement(By.className("1"));
 		element.click();
-		try {
-			TimeUnit.SECONDS.sleep(5);
+        try {
+            boolean ready = false;
+            while(true) {
+                try {
+                    element = driver.findElement(By.className("completed"));
+                } catch (NoSuchElementException n) {ready = false;}
+                if (ready) break;
+                ready = true;
+                TimeUnit.SECONDS.sleep(1);
+            }     
 		} catch ( InterruptedException e) {
 			e.printStackTrace();
 		}
