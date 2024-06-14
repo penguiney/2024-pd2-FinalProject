@@ -26,7 +26,7 @@ public class ParseSong {
     public static int videoWidth = 320;
     public static int videoHeight = 180;
 
-    public void goParse(String website, String name, String folder) {
+    public boolean goParse(String website, String name, String folder) {
         ListStruct struct = new ListStruct();
         String api_key = "AIzaSyAUlDMhU-2Oao7I23dk68R8ilYP6_L0LQc";
         String id = getID(website);
@@ -37,15 +37,14 @@ public class ParseSong {
         File file = new File("./music/" + trueName + ".mp3");
         if(file.exists()) {
             System.out.println("Warning: ParseSong/goParse - file already exist");
-            struct.addSong(folder, name, trueName);
-            return;
+            return struct.addSong(folder, name, trueName);
         }
         System.out.println("parsing 2/5...");
         getMp3bySelenium(website, trueName);
         System.out.println("parsing 5/5...");
         getVideoPicturebyWebsite(trueName, id);
         System.out.println("add song...");
-        struct.addSong(folder, name, trueName);
+        return struct.addSong(folder, name, trueName);
     }
 
     public String getID(String website) {

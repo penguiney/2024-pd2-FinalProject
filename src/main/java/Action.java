@@ -1,5 +1,7 @@
 import java.awt.event.*;
 
+import javax.swing.SwingUtilities;
+
 import javazoom.jl.decoder.JavaLayerException;;
 
 public class Action extends EnterScreen{
@@ -10,9 +12,8 @@ public class Action extends EnterScreen{
     private Song operateSong = null;
     private Folder olderOperaFolder;
     private boolean isMove = false;
-    private boolean isStartSong = false;
     private ParseSong parseSong = new ParseSong();
-    private Player player;
+    //private Player player;
 
     public Action(ListStruct struct){
         this.struct = struct;
@@ -87,8 +88,8 @@ public class Action extends EnterScreen{
         }else if(buttonAction.equals("add Song")){ //"EnterSong" to "inputSongName"
             appearInputSongName();
         }else if(buttonAction.equals("ensure Song")){ //On "EnterSong" add song
-            if(!struct.addSong(operateFolder.name,false,getSongName(),getSongWebsite()))
-                appearWarnScreen("The Song Has Existed");
+            if(!parseSong.goParse(getSongWebsite(), getSongName(), operateFolder.name))
+                appearWarnScreen("The Song Has Existed"); 
             exitinputSongName();
             exitEnterSong();
             initialSongList(operateFolder);
@@ -127,8 +128,12 @@ public class Action extends EnterScreen{
         }else if(buttonAction.equals("play song")){  //"EnterSong" to "SongMainScreen"
             if(operateSong == null) appearWarnScreen("No Song Selected");
             else{
+                SwingUtilities.invokeLater(() -> {
+                    SongMainScreen songPlayer = new SongMainScreen();
+                    songPlayer.setVisible(true);
+                });
                 exitEnterSong();
-                appearStartSongMainScreen(operateSong);
+                appearSongMainScreen(operateSong);
                 //player = new Player(operateSong);
                 repaint();
             }
@@ -137,34 +142,17 @@ public class Action extends EnterScreen{
             exitSongMainScreen();
             appearEnterSong();
             repaint();
-        }else if(buttonAction.equals("Start and Stop")){  //播放暫停
-            isStartSong = !isStartSong;
-            exitSongMainScreen();
-            if(isStartSong) {
-                appearStartSongMainScreen(operateSong);  //播放狀態
-                /*if(!player.isPlaying) {
-                    try { // start the music
-                        player.play();
-                    } catch (JavaLayerException e1) {
-                        e1.printStackTrace();
-                    }
-                }*/
-            } else {
-                appearStartSongMainScreen(operateSong);  //暫停狀態
-                //if(player.isPlaying) player.stop(); // stop the music
-            }
-            repaint();
         }else if(buttonAction.equals("previous song")){  //上一首按紐
             exitSongMainScreen();
             operateSong = findNextOrPreviousSong(operateSong.name,-1);
             //player = new Player(operateSong);
-            appearStartSongMainScreen(operateSong);
+            appearSongMainScreen(operateSong);
             repaint();
         }else if(buttonAction.equals("next song")){ //下一首按紐
             exitSongMainScreen();
             operateSong = findNextOrPreviousSong(operateSong.name,1);
             //player = new Player(operateSong);
-            appearStartSongMainScreen(operateSong);
+            appearSongMainScreen(operateSong);
             repaint();
         } else{    //on "OpenFolder" when button of folder is clicked
             if(isFolder){
