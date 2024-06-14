@@ -5,8 +5,9 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
 public class Player {
-    AdvancedPlayer player;
-    boolean isPlaying = false;
+    private AdvancedPlayer player;
+    
+    public boolean isPlaying = false;
     
     public Player(Song song) {
         // read the MP3 file
