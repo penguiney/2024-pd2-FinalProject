@@ -2,15 +2,13 @@ import java.io.Serializable;
 
 public class Song implements Serializable {
     private static final long serialVersionUID = 1L;
-    boolean isMP4;
+    String trueName;
     String name;
-    String website;
     String shortName;
     String mediumName;
-    Song(boolean isMP4, String name, String website) {
-        this.isMP4 = isMP4;
+    Song(String name, String trueName) {
+        this.trueName = trueName;
         this.name = name;
-        this.website = website;
         shortName = name;
         mediumName = name;
 

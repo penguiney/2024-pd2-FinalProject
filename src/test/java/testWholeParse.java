@@ -5,7 +5,7 @@ public class testWholeParse {
         ParseSong parsebot = new ParseSong();
         ListStruct struct = new ListStruct();
         struct.addList("Test_Folder");
-        parsebot.goParse("https://www.youtube.com/watch?v=1tTarGJlzW4", "Test_Folder");
+        parsebot.goParse("https://www.youtube.com/watch?v=1tTarGJlzW4", "parse_by_testWholeParse","Test_Folder");
         struct.printRoot();
     }
 }

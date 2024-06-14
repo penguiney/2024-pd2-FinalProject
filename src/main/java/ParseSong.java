@@ -26,26 +26,26 @@ public class ParseSong {
     public static int videoWidth = 320;
     public static int videoHeight = 180;
 
-    public void goParse(String website, String folder) {
+    public void goParse(String website, String name, String folder) {
         ListStruct struct = new ListStruct();
         String api_key = "AIzaSyAUlDMhU-2Oao7I23dk68R8ilYP6_L0LQc";
         String id = getID(website);
-        String name = "";
+        String trueName = "";
 
         System.out.println("parsing 1/5...");
-        name = getNameByAPI(id, api_key);
-        File file = new File("./music/" + name + ".mp3");
+        trueName = getNameByAPI(id, api_key);
+        File file = new File("./music/" + trueName + ".mp3");
         if(file.exists()) {
             System.out.println("Warning: ParseSong/goParse - file already exist");
-            struct.addSong(folder, false, name, website);
+            struct.addSong(folder, name, trueName);
             return;
         }
         System.out.println("parsing 2/5...");
-        getMp3bySelenium(website, name);
+        getMp3bySelenium(website, trueName);
         System.out.println("parsing 5/5...");
-        getVideoPicturebyWebsite(name, id);
+        getVideoPicturebyWebsite(trueName, id);
         System.out.println("add song...");
-        struct.addSong(folder, false, name, website);
+        struct.addSong(folder, name, trueName);
     }
 
     public String getID(String website) {
