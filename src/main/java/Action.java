@@ -1,9 +1,5 @@
 import java.awt.event.*;
 
-import javax.swing.SwingUtilities;
-
-import javazoom.jl.decoder.JavaLayerException;;
-
 public class Action extends EnterScreen{
     private ListStruct struct;
     private Folder operateFolder = null;
@@ -13,7 +9,6 @@ public class Action extends EnterScreen{
     private Folder olderOperaFolder;
     private boolean isMove = false;
     private ParseSong parseSong = new ParseSong();
-    //private Player player;
 
     public Action(ListStruct struct){
         this.struct = struct;
@@ -174,7 +169,6 @@ public class Action extends EnterScreen{
                 }
             }
         }
-
     }
 
     public void mouseClicked(MouseEvent mouseEvent) { //"EnterScreen" to "OpenFolder"
