@@ -1,9 +1,9 @@
-
-
 import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -12,6 +12,7 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -29,35 +30,31 @@ public class ParseSong {
     public static int videoHeight = 180;
 
     public boolean goParse(String website, String name, String folder) {
-        WaitingMessege waitingMessege = new WaitingMessege();
         ListStruct struct = new ListStruct();
         String api_key = "AIzaSyAUlDMhU-2Oao7I23dk68R8ilYP6_L0LQc";
         String id = getID(website);
         String trueName = "";
 
-        waitingMessege.messege(1);
         System.out.println("parsing 1/5...");
         trueName = getNameByAPI(id, api_key);
-        waitingMessege.messege2(trueName);
         File file = new File("./music/" + trueName + ".mp3");
         if(file.exists()) {
-            waitingMessege.messege(6);
             System.out.println("Warning: ParseSong/goParse - file already exist");
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch ( InterruptedException e) {
                 e.printStackTrace();
             }
-            waitingMessege.dispose();
             return struct.addSong(folder, name, trueName);
         }
-        waitingMessege.messege(2);
+
         System.out.println("parsing 2/5...");
-        getMp3bySelenium(website, trueName, waitingMessege);
+        getMp3bySelenium(website, trueName);
+
         System.out.println("parsing 5/5...");
         getVideoPicturebyWebsite(trueName, id);
+
         System.out.println("add song...");
-        waitingMessege.dispose();
         return struct.addSong(folder, name, trueName);
     }
 
@@ -122,7 +119,7 @@ public class ParseSong {
         return title;
     }
    
-    public void getMp3bySelenium(String website, String title, WaitingMessege waitingMessege) {
+    public void getMp3bySelenium(String website, String title) {
         System.out.println("Start getting Mp3...");
 
         ChromeOptions co = new ChromeOptions();
@@ -134,6 +131,7 @@ public class ParseSong {
 		driver.get("https://mp3-juices.nu/ajdO/");
 		WebElement element = driver.findElement(By.id("query") );
 		element.sendKeys(website);
+
         try {
 			TimeUnit.SECONDS.sleep(1);
 		} catch ( InterruptedException e) {
@@ -147,7 +145,7 @@ public class ParseSong {
 		}
 		element = driver.findElement(By.className("1"));
 		element.click();
-        waitingMessege.messege(3);
+
         System.out.println("parsing 3/5...");
         try {
             boolean ready = false;
@@ -163,7 +161,7 @@ public class ParseSong {
 		} catch ( InterruptedException e) {
 			e.printStackTrace();
 		}
-        waitingMessege.messege(4);
+
         System.out.println("parsing 4/5...");
 		element.click();
 		//---move file
@@ -177,7 +175,7 @@ public class ParseSong {
 		} catch ( InterruptedException e) {
 			e.printStackTrace();
 		}
-        waitingMessege.messege(5);
+
         System.out.println("parsing 5/5...");
 		Path oldPath = Paths.get(oldPlace);
     	Path newPath = Paths.get("./music/" + title + ".mp3");
