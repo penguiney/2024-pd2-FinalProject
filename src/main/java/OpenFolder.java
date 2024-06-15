@@ -14,9 +14,7 @@ public class OpenFolder extends EnterSong implements ActionListener{
     private ArrayList<Folder> root;
     public int appearFolderIndex = 0;
 
-    public OpenFolder(){ //center area height:50~310 weight:0~350
-        System.out.print("image: ");
-        System.out.println(folderImageJpg.getImageLoadStatus() == MediaTracker.COMPLETE);
+    public OpenFolder(){ 
 
         lastPage = new JButton("Back");
         lastPage.setBounds(0, 0, 80, 50);

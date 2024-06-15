@@ -9,6 +9,8 @@ public class Action extends EnterScreen{
     private Folder olderOperaFolder;
     private boolean isMove = false;
     private ParseSong parseSong = new ParseSong();
+    private int recoverFolderIndex = -1;
+    private int recoverSongIndex = -1;
 
     public Action(ListStruct struct){
         this.struct = struct;
@@ -24,14 +26,17 @@ public class Action extends EnterScreen{
             repaint();
         }else if (buttonAction.equals("go to EnterSong")){  //"OpenFolder" to "EnterSong"
             if(operateFolder == null){
-                appearWarnScreen("No Folder Selected");
-            }else{
+                appearWarnScreen("No Folder Selected");  
+            }else{           //we have choosed Folder to operate 
                 if(isMove){
-                    struct.moveSong(operateSong.trueName, olderOperaFolder.name, operateFolder.name);
+                    struct.moveSong(operateSong.trueName, olderOperaFolder.name, operateFolder.name); //mistake
                     operateFolder = olderOperaFolder;
                 }
                 else 
                     operateSong = null; //initial operateSong
+                //let button clicked can be clicked
+                if(recoverFolderIndex != -1) folderList.get(recoverFolderIndex).setEnabled(true);
+                recoverFolderIndex = -1;
                 isMove= false;
                 exitOpenFolderScreen();
                 initialSongList(operateFolder);
@@ -128,23 +133,24 @@ public class Action extends EnterScreen{
                 //player = new Player(operateSong);
                 repaint();
             }
-
         }else if(buttonAction.equals("play Song")){
             exitSongMainScreen();
             appearSongMainScreen(operateSong);
             repaint();
             MP3Player.startPlayer(operateSong);
         }else if(buttonAction.equals("last to EnterSong")){ //"SongMainScreen" to "EnterSong"
+            if(recoverSongIndex != -1) songButtonList.get(recoverSongIndex).setEnabled(true);
+            recoverSongIndex = -1; //initial recoverSongIndex
             exitSongMainScreen();
             appearEnterSong();
             repaint();
-        }else if(buttonAction.equals("previous song")){  //上一首按紐
+        }else if(buttonAction.equals("previous song")){  //On "SongMainScreen"
             exitSongMainScreen();
             operateSong = findNextOrPreviousSong(operateSong.name,-1);
             //player = new Player(operateSong);
             appearSongMainScreen(operateSong);
             repaint();
-        }else if(buttonAction.equals("next song")){ //下一首按紐
+        }else if(buttonAction.equals("next song")){ //On "SongMainScreen"
             exitSongMainScreen();
             operateSong = findNextOrPreviousSong(operateSong.name,1);
             //player = new Player(operateSong);
@@ -155,6 +161,7 @@ public class Action extends EnterScreen{
                 for(int folderIndex = 0;folderIndex < folderList.size();folderIndex++){  //when folder button is clicked, operate action on this folder
                     folderList.get(folderIndex).setEnabled(true);
                     if(buttonAction.equals(folderList.get(folderIndex).getText())){
+                        recoverFolderIndex = folderIndex;   //recover button of folder can use,record index
                         folderList.get(folderIndex).setEnabled(false);
                         operateFolder = Main.root.listContent.get(folderIndex);
                     }
@@ -163,6 +170,7 @@ public class Action extends EnterScreen{
                 for(int songIndex = 0;songIndex < songButtonList.size();songIndex++){  //when song button is clicked, operate action on this folder
                     songButtonList.get(songIndex).setEnabled(true);
                     if(buttonAction.equals(songButtonList.get(songIndex).getText())){
+                        recoverSongIndex = songIndex;   //recover button of song can use,record index
                         songButtonList.get(songIndex).setEnabled(false);
                         operateSong = operateFolder.content.get(songIndex);                
                     }
