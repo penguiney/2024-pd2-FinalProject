@@ -118,7 +118,7 @@ public class Action extends EnterScreen{
         }else if(buttonAction.equals("remove song")){  //On "EnterSong"
             if(operateSong == null) appearWarnScreen("No Song Selected");
             else{
-                struct.deleteSong(operateFolder.name, operateSong.name);
+                struct.deleteSong(operateFolder.name, operateSong.trueName);
                 exitEnterSong();
                 initialSongList(operateFolder);
                 appearEnterSong();

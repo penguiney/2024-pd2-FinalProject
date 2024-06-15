@@ -24,7 +24,7 @@ public class MP3Player extends JFrame {
         setLocationRelativeTo(null);
 
         playButton = new JButton("Play");
-        pauseButton = new JButton("Pause");
+        pauseButton = new JButton("stop");
         pauseButton.setEnabled(false);
 
         playButton.addActionListener(new ActionListener() {
