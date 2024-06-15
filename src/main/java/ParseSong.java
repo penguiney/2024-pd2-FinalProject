@@ -23,27 +23,41 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ParseSong {
+    
+
     public static int videoWidth = 320;
     public static int videoHeight = 180;
 
     public boolean goParse(String website, String name, String folder) {
+        WaitingMessege waitingMessege = new WaitingMessege();
         ListStruct struct = new ListStruct();
         String api_key = "AIzaSyAUlDMhU-2Oao7I23dk68R8ilYP6_L0LQc";
         String id = getID(website);
         String trueName = "";
 
+        waitingMessege.messege(1);
         System.out.println("parsing 1/5...");
         trueName = getNameByAPI(id, api_key);
+        waitingMessege.messege2(trueName);
         File file = new File("./music/" + trueName + ".mp3");
         if(file.exists()) {
+            waitingMessege.messege(6);
             System.out.println("Warning: ParseSong/goParse - file already exist");
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch ( InterruptedException e) {
+                e.printStackTrace();
+            }
+            waitingMessege.dispose();
             return struct.addSong(folder, name, trueName);
         }
+        waitingMessege.messege(2);
         System.out.println("parsing 2/5...");
-        getMp3bySelenium(website, trueName);
+        getMp3bySelenium(website, trueName, waitingMessege);
         System.out.println("parsing 5/5...");
         getVideoPicturebyWebsite(trueName, id);
         System.out.println("add song...");
+        waitingMessege.dispose();
         return struct.addSong(folder, name, trueName);
     }
 
@@ -108,7 +122,7 @@ public class ParseSong {
         return title;
     }
    
-    public void getMp3bySelenium(String website, String title) {
+    public void getMp3bySelenium(String website, String title, WaitingMessege waitingMessege) {
         System.out.println("Start getting Mp3...");
 
         ChromeOptions co = new ChromeOptions();
@@ -133,6 +147,8 @@ public class ParseSong {
 		}
 		element = driver.findElement(By.className("1"));
 		element.click();
+        waitingMessege.messege(3);
+        System.out.println("parsing 3/5...");
         try {
             boolean ready = false;
             while(true) {
@@ -147,7 +163,8 @@ public class ParseSong {
 		} catch ( InterruptedException e) {
 			e.printStackTrace();
 		}
-        System.out.println("parsing 3/5...");
+        waitingMessege.messege(4);
+        System.out.println("parsing 4/5...");
 		element.click();
 		//---move file
         String oldPlace = System.getProperty("user.home") + "/Downloads/" + title + ".mp3";
@@ -160,7 +177,8 @@ public class ParseSong {
 		} catch ( InterruptedException e) {
 			e.printStackTrace();
 		}
-        System.out.println("parsing 4/5...");
+        waitingMessege.messege(5);
+        System.out.println("parsing 5/5...");
 		Path oldPath = Paths.get(oldPlace);
     	Path newPath = Paths.get("./music/" + title + ".mp3");
     	try {
