@@ -1,4 +1,3 @@
-import java.awt.Frame;
 import java.awt.Font;
 import javax.swing.*;
 

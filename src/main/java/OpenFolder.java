@@ -1,15 +1,8 @@
-
 import java.util.*;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.MediaTracker;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
-
-//import org.openqa.selenium.Dimension;
 
 public class OpenFolder extends EnterSong implements ActionListener{
     private JButton lastPage,createFolder,EnterFolder,removeFolder,previousFolderPage,nextFolderPage,moveSong;
