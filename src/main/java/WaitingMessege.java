@@ -4,15 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 
-public class WaitingMessege extends JFrame implements ActionListener {
+public class WaitingMessege extends JFrame{
 
     JLabel label1;
     JLabel label2;
 
     WaitingMessege() {
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Please wait...");
-        //this.setLocationRelativeTo(null);
         
         setSize(300, 200);
         label1 = new JLabel("Starting getting Song ...");
@@ -50,14 +48,8 @@ public class WaitingMessege extends JFrame implements ActionListener {
         }
     }
     public void messege2 (String name) {
-        label2.setText("Current Downloading: " + name);
+        label2.setText("Current Downloading: \n" + name);
         add(label2);
         repaint();
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
-    
 }
