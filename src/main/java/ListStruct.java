@@ -73,7 +73,7 @@ public class ListStruct {
         Folder oldFolder = searchFolderByName(oldfolderName);
         Song theSong = searchSongBytrueName(oldFolder, trueName);
         deleteSong(oldfolderName, trueName);
-        addSong(newfolderName, theSong.name, theSong.trueName);
+        addSong(newfolderName, theSong.name, theSong.trueName); //mistake theSong = null;
         System.out.println("MoveSong Successfully");
         datalist.saveList();
     }
