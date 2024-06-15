@@ -27,7 +27,7 @@ public class Action extends EnterScreen{
                 appearWarnScreen("No Folder Selected");
             }else{
                 if(isMove){
-                    struct.moveSong(operateSong.name, olderOperaFolder.name, operateFolder.name);
+                    struct.moveSong(operateSong.trueName, olderOperaFolder.name, operateFolder.name);
                     operateFolder = olderOperaFolder;
                 }
                 else 
