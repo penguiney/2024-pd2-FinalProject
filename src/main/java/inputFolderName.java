@@ -17,7 +17,7 @@ public class inputFolderName extends SongMainScreen implements ActionListener{
         createName.setSize(350,250);
         createName.setVisible(true);
 
-        ensureName = new JButton("ensure");
+        ensureName = new JButton("enter");
         ensureName.setBounds(100,150,100,50);
         ensureName.setActionCommand("ensure Folder");
         ensureName.addActionListener(this);

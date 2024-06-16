@@ -14,11 +14,7 @@ public class OpenFolder extends EnterSong implements ActionListener{
     private ArrayList<Folder> root;
     public int appearFolderIndex = 0;
 
-<<<<<<< HEAD
-    public OpenFolder(){ //center area height:50~310 weight:0~350
-=======
     public OpenFolder(){ 
->>>>>>> 2792f5e2a49880afd04c47b055503761a66f35e3
 
         lastPage = new JButton("Back");
         lastPage.setBounds(0, 0, 80, 50);

@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 public class WarnScreen extends InputSongName implements ActionListener{
     private JFrame warnScreen = new JFrame("Warn");
-    private JButton ensureWarn = new JButton("Ensure");
+    private JButton ensureWarn = new JButton("confirm");
     private JLabel warnWord = new JLabel("No Folder Selected");
     
     WarnScreen(){

@@ -23,7 +23,7 @@ public class MP3Player extends JFrame {
         this.filePath = "./music/" + song.trueName + ".mp3";
         setTitle(song.name);
         setSize(300, 100);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         playButton = new JButton("Play");

@@ -19,7 +19,7 @@ public class InputSongName extends JFrame implements ActionListener{
         createSong.setSize(350,250);
         createSong.setVisible(true);
 
-        ensureName = new JButton("ensure");
+        ensureName = new JButton("enter");
         ensureName.setBounds(100,150,100,50);
         ensureName.setActionCommand("ensure Song");
         ensureName.addActionListener(this);

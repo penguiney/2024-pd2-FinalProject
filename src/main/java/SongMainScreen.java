@@ -36,7 +36,7 @@ public class SongMainScreen extends WarnScreen {
         SongNameLabel.setBounds(70, 0, 350, 50);
         SongNameLabel.setFont(new Font("Verdava", Font.PLAIN, 30));
 
-        add(slider);
+        //add(slider);
         add(backToEnterSong);
         add(SongNameLabel);
         add(startPlay);
@@ -45,7 +45,7 @@ public class SongMainScreen extends WarnScreen {
     }
 
     public void exitSongMainScreen(){
-        remove(slider);
+        //remove(slider);
         remove(backToEnterSong);
         remove(SongNameLabel);
         remove(startPlay);
