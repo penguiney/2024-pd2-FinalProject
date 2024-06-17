@@ -15,8 +15,8 @@
   
 # 組員及分工
 - F74126254 曾翊庭 - 儲存
--
--
+- F74126270 潘亮銓 - 銜接GUI和儲存庫的功能、播放器主體
+- F74122242 許成豪 - GUI介面
 ![image](https://github.com/penguiney/2024-pd2-FinalProject/blob/f325e4843a7cff0ce86fc1f0e6423c0758ae296c/picture/finalproject%E5%88%9D%E5%A7%8B%E5%88%86%E5%B7%A5.png)
 ![image](https://github.com/penguiney/2024-pd2-FinalProject/blob/d7cde1b5764f7c747068c975a939d667fa7be957/picture/finalproject%E6%9C%80%E7%B5%82%E5%88%86%E5%B7%A5.jpg)
 
