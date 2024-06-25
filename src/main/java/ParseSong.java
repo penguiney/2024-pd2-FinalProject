@@ -31,7 +31,7 @@ public class ParseSong {
 
     public boolean goParse(String website, String name, String folder) {
         ListStruct struct = new ListStruct();
-        String api_key = "AIzaSyAUlDMhU-2Oao7I23dk68R8ilYP6_L0LQc";
+        String api_key = "";//-------------------------put api key here
         String id = getID(website);
         String trueName = "";
 
