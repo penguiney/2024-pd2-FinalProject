@@ -9,6 +9,7 @@
 - maven ("Maven for java" extension in VS code)
 - (請手動下載) ChromeDriver 版本為當前chrome的版本
 - (Maven自動下載) Selenium / Jlayer 等函式庫
+- Youtube API key (放在ParseSong.java)
 
 # 執行
 - 將整個專案放到IDE裡，執行Main.java
